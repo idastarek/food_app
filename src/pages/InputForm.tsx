@@ -1,5 +1,9 @@
 import { useState } from "react";
+import '../styles/InputForm.scss';
 
+function Title() {
+    return <h1>I currently have...</h1>
+}
 
 function InputFields() {
   const [inputData, setInputData] = useState({
@@ -91,9 +95,14 @@ function GetRecipesButton() {
 export default function InputScreen() {
   return (
     <>
-      <InputFields />
-      <Ingredient />
-      <GetRecipesButton />
+        <div id="container">
+            <div id="top-screen">
+                <Title />
+                <InputFields />
+            </div>
+            <Ingredient />
+            <GetRecipesButton />
+        </div>
     </>
   );
 }
