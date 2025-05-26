@@ -1,6 +1,7 @@
 // Imports
 @import '../styles/_variables';
 
+
 // Container with all page elements
 
 #container {
@@ -9,13 +10,61 @@
     align-items: center;
 }
 
+
 // Top of the screen - colour area
 
 #top-screen {
     display: flex;
     flex-direction: column;
-    border: 3px solid black;
     width: 100%;
     align-items: center;
     background: $green;
+    color: $white;
+    padding: 5%; 
+}
+
+h1 {
+    font-weight: 400;
+    font-size: 1.7rem;
+}
+
+#input-fields form {
+    display: flex;
+    flex-direction: column;
+    border: 3px solid black;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+// todo: create a selector to group all common styles for the below elements
+
+.input-field {
+    background-color: #ffffffcc;
+    color: #777777;   // todo: make ingredient and quantity fields the same colour, turn black when typing the actual values
+    border: none;
+    padding: 5px 10px;
+    font-size: 1rem;
+    width: 18.5rem;
+    border-radius: 2px;
+}
+
+// todo: why is there extra space to the left of the quantity field?
+
+#form-quantity-fields {
+    display: flex;
+    gap: 0.3rem;
+    // border: 2px solid white; 
+}
+
+#form-quantity-fields .input-field {
+    width: 9rem;
+}
+
+.input-field-button {
+    background-color: #ffffffe6;
+    color: #253237;
+    border: none;
+    padding: 5px 10px;
+    font-size: 1rem;
+    border-radius: 2px;
 }

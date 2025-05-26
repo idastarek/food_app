@@ -26,43 +26,46 @@ function InputFields() {
   return (
     <>
       <form onSubmit={handleSubmit} >
-        <label htmlFor="ingredient">Ingredient: </label>
+        <label htmlFor="ingredient"></label>
         <input 
           type="text" 
           id="ingredient" 
+          className="input-field"
           name="ingredient" 
+          placeholder="Log your food here"
           value={inputData.ingredient} 
           onChange={handleChange} 
         />
-        <br />
 
-        <label htmlFor="quantity">Quantity: </label>
-        <input 
-          type="number" 
-          id="quantity" 
-          name="quantity" 
-          value={inputData.quantity} 
-          onChange={handleChange} 
-        />
-        <br />
+        <div id="form-quantity-fields">
+            <label htmlFor="quantity"></label>
+            <input 
+            type="number" 
+            id="quantity" 
+            className="input-field"
+            name="quantity" 
+            value={inputData.quantity} 
+            onChange={handleChange} 
+            />
 
-        <label htmlFor="unit">Unit: </label>
-        <select 
-          id="unit" 
-          name="unit" 
-          value={inputData.unit} 
-          onChange={handleChange} 
-        >
-          <option value="">Select unit</option>
-          <option value="g">grams (g)</option>
-          <option value="kg">kilograms (kg)</option>
-          <option value="ml">mililiters (ml)</option>
-          <option value="liters">liters (l)</option>
-          <option value="pcs">pieces (pcs)</option>
-        </select>
-        <br />
+            <label htmlFor="unit"></label>
+            <select 
+            id="unit" 
+            className="input-field"
+            name="unit" 
+            value={inputData.unit} 
+            onChange={handleChange} 
+            >
+            <option value="">Select unit</option>
+            <option value="g">grams (g)</option>
+            <option value="kg">kilograms (kg)</option>
+            <option value="ml">mililiters (ml)</option>
+            <option value="liters">liters (l)</option>
+            <option value="pcs">pieces (pcs)</option>
+            </select>
+        </div>
 
-        <button type="submit">Add ingredient</button>
+        <button type="submit" className="input-field-button">Add ingredient</button>
       </form>
     </>
     )
@@ -98,7 +101,9 @@ export default function InputScreen() {
         <div id="container">
             <div id="top-screen">
                 <Title />
-                <InputFields />
+                <div id="input-fields">
+                    <InputFields />
+                </div>
             </div>
             <Ingredient />
             <GetRecipesButton />
