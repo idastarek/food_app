@@ -40,6 +40,7 @@ function InputFields() {
           value={inputData.quantity} 
           onChange={handleChange} 
         />
+        <br />
 
         <label htmlFor="unit">Unit: </label>
         <select 
