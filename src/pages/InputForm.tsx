@@ -57,11 +57,11 @@ function InputFields() {
             onChange={handleChange} 
             >
             <option value="">Select unit</option>
-            <option value="g">grams (g)</option>
-            <option value="kg">kilograms (kg)</option>
-            <option value="ml">mililiters (ml)</option>
-            <option value="liters">liters (l)</option>
-            <option value="pcs">pieces (pcs)</option>
+            <option value="g">grams</option>
+            <option value="kg">kilograms</option>
+            <option value="ml">mililiters</option>
+            <option value="liters">liters</option>
+            <option value="pcs">pieces</option>
             </select>
         </div>
 
@@ -75,9 +75,10 @@ function InputFields() {
 function Ingredient() {
   return (
     <>
-      <div className="ingredient">
+      <div className="ingredient-container">
         <h3 className="ingredient-name">Potatos</h3>
-        <p className="ingredient-quantity">0,5kg</p>
+        <img src="../../public/images/potato.png" alt="" className="ingredient-icon" />
+        <p className="ingredient-quantity">0,5 kg</p>
       </div>
     </>
   )
@@ -87,9 +88,9 @@ function Ingredient() {
 function GetRecipesButton() {
   return (
     <>
-      <div id="get-recipes-btn">
-        <button>Get recipes</button>
-      </div>
+        <div id="get-recipes-btn">
+            <button >Get recipes!</button>
+        </div>
     </>
   );
 }
@@ -105,7 +106,13 @@ export default function InputScreen() {
                     <InputFields />
                 </div>
             </div>
-            <Ingredient />
+            <div id="ingredients-container">
+                <Ingredient />
+                <Ingredient />
+                <Ingredient />
+                <Ingredient />
+                <Ingredient />
+            </div>
             <GetRecipesButton />
         </div>
     </>
