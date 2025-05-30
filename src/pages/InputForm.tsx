@@ -1,6 +1,12 @@
 import { useState } from "react";
 import '../styles/InputForm.scss';
 
+interface Ingredient  {
+  name: string;
+  quantity: number;
+  unit: string;
+}
+
 function Title() {
     return <h1>I currently have...</h1>
 }
