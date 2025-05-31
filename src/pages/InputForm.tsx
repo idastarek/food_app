@@ -112,12 +112,14 @@ export default function InputScreen() {
                     <InputFields />
                 </div>
             </div>
-            <div id="ingredients-container">
+            <div className="ingredients-container-outer">
+              <div className="ingredients-container-inner">
                 <Ingredient />
                 <Ingredient />
                 <Ingredient />
                 <Ingredient />
                 <Ingredient />
+              </div>
             </div>
             <GetRecipesButton />
         </div>

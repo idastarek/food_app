@@ -83,14 +83,18 @@ h1 {
 
 // Ingredients container - middle part of the screen
 
-#ingredients-container {
+.ingredients-container-outer {
+    padding: 1rem 2rem;
+    margin: 1rem 2rem;
     border: 2px solid blue;
     display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    margin: 1.5rem;
-    padding: 0;
+    justify-content: center;
+}
 
+.ingredients-container-inner {
+    display: grid;
+    grid-template-columns: 9rem 9rem;
+    border: 2px solid purple;
 }
 
 .ingredient-container {
