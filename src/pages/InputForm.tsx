@@ -20,8 +20,8 @@ function InputFields() {
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value} = event.target;
-    setInputData((prevInputData) => ({ 
-      ...prevInputData, 
+    setInputData((prev) => ({ 
+      ...prev, 
       [name]: value 
     }));
   };
