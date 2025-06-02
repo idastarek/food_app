@@ -12,11 +12,16 @@ function Title() {
 }
 
 function InputFields() {
-  const [inputData, setInputData] = useState({
+  const [inputData, setInputData] = useState<IngredientType>({
     name: "", 
     quantity: 0, 
     unit: "" 
   });
+
+  // initialise an array to store ingredient objects
+  const [ingredientsArray, setIngredientArray] = useState<IngredientType[]>(
+    []
+  );
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value} = event.target;
@@ -30,13 +35,21 @@ function InputFields() {
     event.preventDefault();
     alert(`Ingredient: ${inputData.name}, Quantity: ${inputData.quantity}, Unit: ${inputData.unit}`);
     
+
     const ingredient: IngredientType = {
       name: inputData.name,
-      quantity: inputData.quantity,
+      quantity: Number(inputData.quantity),
       unit: inputData.unit
     } 
-
     console.log("ingredient", ingredient);
+
+    // use the setter to create a new array
+    const updatedArray = [...ingredientsArray, ingredient];
+    setIngredientArray(updatedArray);
+
+    console.log("ingredients array", updatedArray);
+
+    localStorage.setItem("ingredients", JSON.stringify(updatedArray));
 
   }
 
