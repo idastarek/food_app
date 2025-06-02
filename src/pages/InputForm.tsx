@@ -1,32 +1,43 @@
 import { useState } from "react";
 import '../styles/InputForm.scss';
 
-interface Ingredient  {
+interface IngredientType  {
   name: string;
   quantity: number;
   unit: string;
 }
 
 function Title() {
-    return <h1>I currently have...</h1>
+  return <h1>I currently have...</h1>
 }
 
 function InputFields() {
   const [inputData, setInputData] = useState({
-    ingredient: "", 
+    name: "", 
     quantity: 0, 
     unit: "" 
   });
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value} = event.target;
-    setInputData((prevInputData => ({ ...prevInputData, [name]: value })));
+    setInputData((prevInputData) => ({ 
+      ...prevInputData, 
+      [name]: value 
+    }));
   };
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    alert(`Ingredient: ${inputData.ingredient}, Quantity: ${inputData.quantity}, Unit: ${inputData.unit} `
-    );
+    alert(`Ingredient: ${inputData.name}, Quantity: ${inputData.quantity}, Unit: ${inputData.unit}`);
+    
+    const ingredient: IngredientType = {
+      name: inputData.name,
+      quantity: inputData.quantity,
+      unit: inputData.unit
+    } 
+
+    console.log("ingredient", ingredient);
+
   }
 
   return (
@@ -37,9 +48,9 @@ function InputFields() {
           type="text" 
           id="ingredient" 
           className="input-field"
-          name="ingredient" 
+          name="name" 
           placeholder="Log your food here"
-          value={inputData.ingredient} 
+          value={inputData.name} 
           onChange={handleChange} 
         />
 
