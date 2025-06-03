@@ -1,0 +1,64 @@
+[
+  {
+    "name": "Spaghetti Aglio e Olio",
+    "ingredients": [
+      { "name": "Spaghetti", "quantity": 100, "unit": "g" },
+      { "name": "Garlic", "quantity": 2, "unit": "cloves" },
+      { "name": "Olive Oil", "quantity": 2, "unit": "tbsp" },
+      { "name": "Chili Flakes", "quantity": 0.5, "unit": "tsp" },
+      { "name": "Salt", "quantity": 1, "unit": "tsp" }
+    ],
+    "instructions": [
+      "Boil spaghetti in salted water until al dente.",
+      "Meanwhile, sauté garlic and chili flakes in olive oil.",
+      "Drain pasta and add to the pan with the garlic oil.",
+      "Toss everything together and serve hot."
+    ]
+  },
+  {
+    "name": "Simple Vegetable Stir Fry",
+    "ingredients": [
+      { "name": "Broccoli", "quantity": 100, "unit": "g" },
+      { "name": "Carrot", "quantity": 1, "unit": "pcs" },
+      { "name": "Bell Pepper", "quantity": 1, "unit": "pcs" },
+      { "name": "Soy Sauce", "quantity": 2, "unit": "tbsp" },
+      { "name": "Garlic", "quantity": 1, "unit": "clove" },
+      { "name": "Oil", "quantity": 1, "unit": "tbsp" }
+    ],
+    "instructions": [
+      "Chop all vegetables into bite-sized pieces.",
+      "Heat oil in a pan and sauté garlic.",
+      "Add all vegetables and stir fry on high heat for 5–7 minutes.",
+      "Add soy sauce, toss well, and serve."
+    ]
+  },
+  {
+    "name": "Tomato Omelette",
+    "ingredients": [
+      { "name": "Eggs", "quantity": 2, "unit": "pcs" },
+      { "name": "Tomato", "quantity": 1, "unit": "pcs" },
+      { "name": "Onion", "quantity": 0.5, "unit": "pcs" },
+      { "name": "Salt", "quantity": 0.5, "unit": "tsp" },
+      { "name": "Oil", "quantity": 1, "unit": "tbsp" }
+    ],
+    "instructions": [
+      "Chop tomato and onion finely.",
+      "Beat eggs with salt, tomato, and onion.",
+      "Heat oil in a non-stick pan.",
+      "Pour the mixture and cook until golden brown on both sides."
+    ]
+  },
+  {
+    "name": "Grilled Cheese Sandwich",
+    "ingredients": [
+      { "name": "Bread", "quantity": 2, "unit": "pcs" },
+      { "name": "Cheese", "quantity": 2, "unit": "slices" },
+      { "name": "Butter", "quantity": 1, "unit": "tbsp" }
+    ],
+    "instructions": [
+      "Butter one side of each bread slice.",
+      "Place cheese between unbuttered sides.",
+      "Grill on a pan until both sides are golden and the cheese is melted."
+    ]
+  }
+]

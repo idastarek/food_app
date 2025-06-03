@@ -35,6 +35,12 @@ function InputFields() {
     event.preventDefault();
     alert(`Ingredient: ${inputData.name}, Quantity: ${inputData.quantity}, Unit: ${inputData.unit}`);
     
+    // reset the input fields after data is submitted
+    setInputData({
+      name: "",
+      quantity: 0,
+      unit: ""
+    })
 
     const ingredient: IngredientType = {
       name: inputData.name,
@@ -50,6 +56,14 @@ function InputFields() {
     console.log("ingredients array", updatedArray);
 
     localStorage.setItem("ingredients", JSON.stringify(updatedArray));
+
+    // todo: verify if adding works; how to reset the array; 
+    // how to remove ingredients - if pressed or double clicked - do you want to delete?
+    // instead of deleting - readjust the amount you have - pop up window, adjust databse
+    // split code to be more modular ? 
+    // add recipes
+    // how to compare ingredients against recipes
+    // create new page with recipe suggestions
 
   }
 
