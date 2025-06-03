@@ -1,6 +1,7 @@
 [
   {
     "name": "Spaghetti Aglio e Olio",
+    "image": "/images/spaghetti_aglio_e_olio.jpg",
     "ingredients": [
       { "name": "Spaghetti", "quantity": 100, "unit": "g" },
       { "name": "Garlic", "quantity": 2, "unit": "cloves" },
@@ -17,6 +18,7 @@
   },
   {
     "name": "Simple Vegetable Stir Fry",
+    "image": "/images/vegetable_stir_fry.jpg",
     "ingredients": [
       { "name": "Broccoli", "quantity": 100, "unit": "g" },
       { "name": "Carrot", "quantity": 1, "unit": "pcs" },
@@ -34,6 +36,7 @@
   },
   {
     "name": "Tomato Omelette",
+    "image": "/images/tomato_omelette.jpg",
     "ingredients": [
       { "name": "Eggs", "quantity": 2, "unit": "pcs" },
       { "name": "Tomato", "quantity": 1, "unit": "pcs" },
@@ -50,6 +53,7 @@
   },
   {
     "name": "Grilled Cheese Sandwich",
+    "image": "/images/grilled_cheese.jpg",
     "ingredients": [
       { "name": "Bread", "quantity": 2, "unit": "pcs" },
       { "name": "Cheese", "quantity": 2, "unit": "slices" },
