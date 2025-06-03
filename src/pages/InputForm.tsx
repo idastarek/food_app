@@ -68,11 +68,11 @@ function InputFields() {
 
     localStorage.setItem("ingredients", JSON.stringify(updatedArray));
 
-    // todo: verify if adding works; how to reset the array; 
+    // todo
+    // fix styling
     // how to remove ingredients - if pressed or double clicked - do you want to delete?
     // instead of deleting - readjust the amount you have - pop up window, adjust databse
     // split code to be more modular ? 
-    // add recipes
     // how to compare ingredients against recipes
     // create new page with recipe suggestions
     
