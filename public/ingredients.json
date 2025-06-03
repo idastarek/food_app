@@ -1,0 +1,22 @@
+[
+  {
+    "name": "Carrot",
+    "image": "/images/carrot.jpg"
+  },
+  {
+    "name": "Garlic",
+    "image": "/images/garlic.jpg"
+  },
+  {
+    "name": "Tomato",
+    "image": "/images/tomato.jpg"
+  },
+  {
+    "name": "Cheese",
+    "image": "/images/cheese.jpg"
+  },
+  {
+    "name": "Eggs",
+    "image": "/images/eggs.jpg"
+  }
+]

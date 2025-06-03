@@ -11,6 +11,18 @@ function Title() {
   return <h1>I currently have...</h1>
 }
 
+function Ingredient({ name, quantity, unit }: IngredientType) {
+  return (
+    <>
+      <div className="ingredient-container">
+        <h3 className="ingredient-name">{name}</h3>
+        <img src="../../public/images/potato.png" alt={`icon of ${name}`} className="ingredient-icon" />
+        <p className="ingredient-quantity">{quantity} {unit}</p>
+      </div>
+    </>
+  )
+}
+
 function InputFields() {
   const [inputData, setInputData] = useState<IngredientType>({
     name: "", 
@@ -33,7 +45,6 @@ function InputFields() {
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    alert(`Ingredient: ${inputData.name}, Quantity: ${inputData.quantity}, Unit: ${inputData.unit}`);
     
     // reset the input fields after data is submitted
     setInputData({
@@ -64,7 +75,7 @@ function InputFields() {
     // add recipes
     // how to compare ingredients against recipes
     // create new page with recipe suggestions
-
+    
   }
 
   return (
@@ -111,21 +122,19 @@ function InputFields() {
 
         <button type="submit" className="input-field-button">Add ingredient</button>
       </form>
-    </>
-    )
-}
 
-
-function Ingredient() {
-  return (
-    <>
-      <div className="ingredient-container">
-        <h3 className="ingredient-name">Potatos</h3>
-        <img src="../../public/images/potato.png" alt="" className="ingredient-icon" />
-        <p className="ingredient-quantity">0,5 kg</p>
+      <div className="ingredients-container-outer">
+        <div className="ingredients-container-inner">
+          {ingredientsArray.map(item => (
+            <Ingredient 
+              name={item.name} 
+              quantity={item.quantity} 
+              unit={item.unit} />
+          ))}
+        </div>
       </div>
     </>
-  )
+    )
 }
 
 
@@ -149,15 +158,6 @@ export default function InputScreen() {
                 <div id="input-fields">
                     <InputFields />
                 </div>
-            </div>
-            <div className="ingredients-container-outer">
-              <div className="ingredients-container-inner">
-                <Ingredient />
-                <Ingredient />
-                <Ingredient />
-                <Ingredient />
-                <Ingredient />
-              </div>
             </div>
             <GetRecipesButton />
         </div>
