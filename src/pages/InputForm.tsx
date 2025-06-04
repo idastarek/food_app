@@ -23,17 +23,19 @@ function Ingredient({ name, quantity, unit }: IngredientType) {
   )
 }
 
-function InputFields() {
+//todo: create an ingredients list component 
+
+function InputFields({
+  setIngredientsArray
+}: {
+  setIngredientsArray: React.Dispatch<React.SetStateAction<IngredientType[]>>;
+}) {
+
   const [inputData, setInputData] = useState<IngredientType>({
     name: "", 
     quantity: 0, 
     unit: "" 
   });
-
-  // initialise an array to store ingredient objects
-  const [ingredientsArray, setIngredientArray] = useState<IngredientType[]>(
-    []
-  );
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value} = event.target;
@@ -62,7 +64,7 @@ function InputFields() {
 
     // use the setter to create a new array
     const updatedArray = [...ingredientsArray, ingredient];
-    setIngredientArray(updatedArray);
+    setIngredientsArray(updatedArray);
 
     console.log("ingredients array", updatedArray);
 
@@ -80,49 +82,54 @@ function InputFields() {
 
   return (
     <>
-      <form onSubmit={handleSubmit} >
-        <label htmlFor="ingredient"></label>
-        <input 
-          type="text" 
-          id="ingredient" 
-          className="input-field"
-          name="name" 
-          placeholder="Log your food here"
-          value={inputData.name} 
-          onChange={handleChange} 
-        />
-
-        <div id="form-quantity-fields">
-            <label htmlFor="quantity"></label>
-            <input 
-            type="number" 
-            id="quantity" 
+      <div id="input-fields">
+        <form onSubmit={handleSubmit} >
+          <label htmlFor="ingredient"></label>
+          <input 
+            type="text" 
+            id="ingredient" 
             className="input-field"
-            name="quantity" 
-            value={inputData.quantity} 
+            name="name" 
+            placeholder="Log your food here"
+            value={inputData.name} 
             onChange={handleChange} 
-            />
+          />
 
-            <label htmlFor="unit"></label>
-            <select 
-            id="unit" 
-            className="input-field"
-            name="unit" 
-            value={inputData.unit} 
-            onChange={handleChange} 
-            >
-            <option value="">Select unit</option>
-            <option value="g">grams</option>
-            <option value="kg">kilograms</option>
-            <option value="ml">mililiters</option>
-            <option value="liters">liters</option>
-            <option value="pcs">pieces</option>
-            </select>
-        </div>
+          <div id="form-quantity-fields">
+              <label htmlFor="quantity"></label>
+              <input 
+              type="number" 
+              id="quantity" 
+              className="input-field"
+              name="quantity" 
+              value={inputData.quantity} 
+              onChange={handleChange} 
+              />
 
-        <button type="submit" className="input-field-button">Add ingredient</button>
-      </form>
+              <label htmlFor="unit"></label>
+              <select 
+              id="unit" 
+              className="input-field"
+              name="unit" 
+              value={inputData.unit} 
+              onChange={handleChange} 
+              >
+              <option value="">Select unit</option>
+              <option value="g">grams</option>
+              <option value="kg">kilograms</option>
+              <option value="ml">mililiters</option>
+              <option value="liters">liters</option>
+              <option value="pcs">pieces</option>
+              </select>
+          </div>
 
+          <button type="submit" className="input-field-button">Add ingredient</button>
+        </form>
+      </div>
+
+
+      {/* todo - split this into separate component */}
+      {/* dynamically render ingredients from the state array */}
       <div className="ingredients-container-outer">
         <div className="ingredients-container-inner">
           {ingredientsArray.map(item => (
@@ -150,14 +157,19 @@ function GetRecipesButton() {
 
 
 export default function InputScreen() {
+
+  // initialise an array to store ingredient objects
+  const [ingredientsArray, setIngredientsArray] = useState<IngredientType[]>(
+    []
+  );
+
   return (
     <>
         <div id="container">
             <div id="top-screen">
                 <Title />
-                <div id="input-fields">
-                    <InputFields />
-                </div>
+                <InputFields setIngredientsArray={setIngredientsArray} />
+                
             </div>
             <GetRecipesButton />
         </div>
