@@ -29,6 +29,7 @@
 h1 {
     font-weight: 400;
     font-size: 1.7rem;
+    margin: 0.5rem;
 }
 
 #input-fields form {
@@ -36,7 +37,7 @@ h1 {
     flex-direction: column;
     // border: 3px solid black;
     align-items: center;
-    gap: 0.8rem;
+    gap: 0.5rem;
 }
 
 // todo: create a selector to group all common styles for the below elements
@@ -89,6 +90,7 @@ h1 {
     border: 2px solid blue;
     display: flex;
     justify-content: center;
+    overflow-y: scroll;
 }
 
 .ingredients-container-inner {
@@ -119,6 +121,7 @@ h1 {
     margin-bottom: 1rem;
     position: absolute;
     bottom: 0;
+    margin: 0;
 }
 
 #get-recipes-btn button {

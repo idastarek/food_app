@@ -23,11 +23,28 @@ function Ingredient({ name, quantity, unit }: IngredientType) {
   )
 }
 
-//todo: create an ingredients list component 
+function IngredientsGrid({ ingredientsArray }: {ingredientsArray: IngredientType[] }) {
+  {/* dynamically render ingredients from the state array */}
+  return (
+    <div className="ingredients-container-outer">
+    <div className="ingredients-container-inner">
+      {ingredientsArray.map(item => (
+        <Ingredient 
+          name={item.name} 
+          quantity={item.quantity} 
+          unit={item.unit} />
+      ))}
+    </div>
+  </div>
+  )
+}
+
 
 function InputFields({
+  ingredientsArray,
   setIngredientsArray
 }: {
+  ingredientsArray: IngredientType[];
   setIngredientsArray: React.Dispatch<React.SetStateAction<IngredientType[]>>;
 }) {
 
@@ -124,21 +141,8 @@ function InputFields({
           </div>
 
           <button type="submit" className="input-field-button">Add ingredient</button>
+        
         </form>
-      </div>
-
-
-      {/* todo - split this into separate component */}
-      {/* dynamically render ingredients from the state array */}
-      <div className="ingredients-container-outer">
-        <div className="ingredients-container-inner">
-          {ingredientsArray.map(item => (
-            <Ingredient 
-              name={item.name} 
-              quantity={item.quantity} 
-              unit={item.unit} />
-          ))}
-        </div>
       </div>
     </>
     )
@@ -168,9 +172,9 @@ export default function InputScreen() {
         <div id="container">
             <div id="top-screen">
                 <Title />
-                <InputFields setIngredientsArray={setIngredientsArray} />
-                
+                <InputFields ingredientsArray={ingredientsArray} setIngredientsArray={setIngredientsArray} />                
             </div>
+            <IngredientsGrid ingredientsArray={ingredientsArray} />
             <GetRecipesButton />
         </div>
     </>
