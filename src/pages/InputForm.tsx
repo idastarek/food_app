@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from 'react-router-dom';
 import '../styles/InputForm.scss';
 
 interface IngredientType  {
@@ -25,6 +26,7 @@ function Ingredient({ name, quantity, unit }: IngredientType) {
 
 function IngredientsGrid({ ingredientsArray }: {ingredientsArray: IngredientType[] }) {
   {/* dynamically render ingredients from the state array */}
+
   return (
     <div className="ingredients-container-outer">
     <div className="ingredients-container-inner">
@@ -150,10 +152,17 @@ function InputFields({
 
 
 function GetRecipesButton() {
+
+  const navigate = useNavigate();
+
+  function handleRedirect() {
+    navigate("/recipe-suggestions");
+  }
+
   return (
     <>
         <div id="get-recipes-btn">
-            <button >Get recipes!</button>
+            <button onClick={handleRedirect} >Get recipes!</button>
         </div>
     </>
   );
@@ -172,7 +181,9 @@ export default function InputScreen() {
         <div id="container">
             <div id="top-screen">
                 <Title />
-                <InputFields ingredientsArray={ingredientsArray} setIngredientsArray={setIngredientsArray} />                
+                <InputFields 
+                  ingredientsArray={ingredientsArray} 
+                  setIngredientsArray={setIngredientsArray} />                
             </div>
             <IngredientsGrid ingredientsArray={ingredientsArray} />
             <GetRecipesButton />
