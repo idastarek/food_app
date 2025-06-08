@@ -162,6 +162,7 @@ function GetRecipesButton() {
   return (
     <>
         <div id="get-recipes-btn">
+            {/* // todo: make navigation conditional on item presence */}
             <button onClick={handleRedirect} >Get recipes!</button>
         </div>
     </>
