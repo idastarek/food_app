@@ -11,7 +11,10 @@ function Recipe() {
                 <img className="recipe-icon" alt="A small icon of a plate of spaghetti" src="../images/spaghetti.png" />
                 <div className="recipe-name">
                     <h2>Spaghetti bolognese</h2>
-                    <p>Time: 30 min</p>
+                    <div className="recipe-additional-info">
+                        <p>Time: 30 min</p>
+                        <p>You have 6/8 ingredients!</p>
+                    </div>
                 </div>
             </div>
         </>
@@ -24,6 +27,11 @@ function RecipesGrid() {
         <>
             <div id="recipes-container">
                 <Recipe />
+                <Recipe />
+                <Recipe />
+                <Recipe />
+                <Recipe />
+                <Recipe />
             </div>
         </>
     )
@@ -31,6 +39,18 @@ function RecipesGrid() {
 
 
 export default function RecipeSuggestions() {
+
+    const localStorageData = localStorage.getItem("ingredients");
+
+    if (localStorageData) {
+        const ingredients = JSON.parse(localStorageData);
+
+        console.log("ingredients from local storage ", ingredients);
+        console.log("type of ingredients", typeof ingredients);
+
+        
+    } 
+
     return (
         <>
             <div id="container">

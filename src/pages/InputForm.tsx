@@ -92,11 +92,8 @@ function InputFields({
     // todo
     // fix styling
     // how to remove ingredients - if pressed or double clicked - do you want to delete?
-    // instead of deleting - readjust the amount you have - pop up window, adjust databse
-    // split code to be more modular ? 
-    // how to compare ingredients against recipes
-    // create new page with recipe suggestions
-    
+    // instead of deleting - readjust the amount you have - pop up window, update databse
+    // how to compare ingredients against recipes    
   }
 
   return (
@@ -154,7 +151,6 @@ function InputFields({
 function GetRecipesButton() {
 
   const navigate = useNavigate();
-
   function handleRedirect() {
     navigate("/recipe-suggestions");
   }
@@ -184,7 +180,8 @@ export default function InputScreen() {
                 <Title />
                 <InputFields 
                   ingredientsArray={ingredientsArray} 
-                  setIngredientsArray={setIngredientsArray} />                
+                  setIngredientsArray={setIngredientsArray} 
+                />                
             </div>
             <IngredientsGrid ingredientsArray={ingredientsArray} />
             <GetRecipesButton />
