@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import "../styles/AddRecipies.scss";
 
 
 interface RecipeType {
@@ -18,7 +19,7 @@ function AddRecipesForm({
     setRecipiesArray 
 }: {
     recipiesArray: RecipeType[];
-    setRecipiesArray: 
+    setRecipiesArray: React.Dispatch<React.SetStateAction<RecipeType[]>>;
 }) {
 
     const [inputData, setInputData] = useState<RecipeType>({
@@ -114,11 +115,15 @@ export default function() {
  
     return (
         <>
-        <Title />
-        <AddRecipesForm 
-            recipiesArray={recipiesArray} 
-            setRecipiesArray={setRecipiesArray}
-            />
+        <div id="container">
+            <div id="top-screen">
+                <Title />
+                <AddRecipesForm 
+                    recipiesArray={recipiesArray} 
+                    setRecipiesArray={setRecipiesArray}
+                />  
+            </div>
+        </div>
         </>
     )
 }
