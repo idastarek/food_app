@@ -1,4 +1,10 @@
 import "../styles/RecipeSuggestions.scss";
+import recipes from '../../src/data/recipes.json';
+
+console.log("all recipes", recipes);
+console.log("recipies length", recipes.length);
+
+
 
 function Title() {
     return <h1>How about...</h1>
@@ -46,9 +52,21 @@ export default function RecipeSuggestions() {
         const ingredients = JSON.parse(localStorageData);
 
         console.log("ingredients from local storage ", ingredients);
-        console.log("type of ingredients", typeof ingredients);
 
-        
+        // basic matching logic 
+        // iterate over every ingredient against every recipe - if there's a match,
+        // create a new object with a key of the recipe and value of the ingredient
+        // keep iterating, if there is a match with a recipe that already exists, 
+        // just add the ingredient as a value
+        // if the key (recipe) hasn't had a match before, create a new key
+
+        // iterate over every ingredient
+        // ingredients.map(ingredient => {
+        //     if (ingredient.name) 
+        // })
+
+        // todo: make the matching logic more elaborated, check the amounts of ingredients
+        // if no ingredient, check for substitutes 
     } 
 
     return (

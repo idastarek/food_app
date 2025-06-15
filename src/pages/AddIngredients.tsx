@@ -8,8 +8,9 @@ interface IngredientType  {
   unit: string;
 }
 
-function Title() {
-  return <h1>I currently have...</h1>
+// todo: pass component from components folder
+function Title({title}: ) {
+  return <h1>{title}</h1>
 }
 
 function Ingredient({ name, quantity, unit }: IngredientType) {
@@ -42,7 +43,7 @@ function IngredientsGrid({ ingredientsArray }: {ingredientsArray: IngredientType
 }
 
 
-function InputFields({
+function InputForm({
   ingredientsArray,
   setIngredientsArray
 }: {
@@ -166,19 +167,21 @@ function GetRecipesButton() {
 }
 
 
-export default function InputScreen() {
+export default function AddIngredients() {
 
   // initialise an array to store ingredient objects
   const [ingredientsArray, setIngredientsArray] = useState<IngredientType[]>(
     []
   );
 
+  // todo: add to local storage here
+
   return (
     <>
         <div id="container">
             <div id="top-screen">
                 <Title />
-                <InputFields 
+                <InputForm 
                   ingredientsArray={ingredientsArray} 
                   setIngredientsArray={setIngredientsArray} 
                 />                

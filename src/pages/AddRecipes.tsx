@@ -51,6 +51,7 @@ function AddRecipesForm({
             ingredients: inputData.ingredients,
             instruction: inputData.instruction
         } 
+
         console.log("recipe", recipe);
 
         // use the setter to create a new array
@@ -84,6 +85,7 @@ function AddRecipesForm({
                         id="ingredients" 
                         className="input-field"
                         name="ingredients" 
+                        placeholder="Ingredinets"
                         value={inputData.ingredients} 
                         onChange={handleChange} 
                     />
@@ -94,6 +96,7 @@ function AddRecipesForm({
                         id="instruction" 
                         className="input-field"
                         name="instruction" 
+                        placeholder="Instructions"
                         value={inputData.instruction} 
                         onChange={handleChange} 
                     />

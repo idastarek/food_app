@@ -1,4 +1,4 @@
-import InputScreen from "./pages/InputForm";
+import AddIngredients from "./pages/AddIngredients";
 import RecipeSuggestions from "./pages/RecipeSuggestions";
 import AddRecipes from "./pages/AddRecipes";
 import { 
@@ -13,7 +13,8 @@ export default function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/add-ingredients" element={<InputScreen />} />
+        <Route path="/" element={<AddIngredients/>} />
+        <Route path="/add-ingredients" element={<AddIngredients />} />
         <Route path="/recipe-suggestions" element={<RecipeSuggestions />} />
         <Route path="/add-recipes" element={<AddRecipes />} />
       </Routes>
