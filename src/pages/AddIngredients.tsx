@@ -1,16 +1,12 @@
 import { useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import '../styles/InputForm.scss';
+import { Title } from '../components.tsx';
 
 interface IngredientType  {
   name: string;
   quantity: number;
   unit: string;
-}
-
-// todo: pass component from components folder
-function Title({title}: ) {
-  return <h1>{title}</h1>
 }
 
 function Ingredient({ name, quantity, unit }: IngredientType) {
@@ -180,7 +176,7 @@ export default function AddIngredients() {
     <>
         <div id="container">
             <div id="top-screen">
-                <Title />
+                <Title title="I currently have..." />
                 <InputForm 
                   ingredientsArray={ingredientsArray} 
                   setIngredientsArray={setIngredientsArray} 

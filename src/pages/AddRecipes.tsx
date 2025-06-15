@@ -1,16 +1,12 @@
 import { useState } from 'react';
 import "../styles/AddRecipies.scss";
+import { Title } from '../components.tsx';
 
 
 interface RecipeType {
     recipeName: string;
     ingredients: string;
     instruction: string;
-}
-
-
-function Title() {
-    return <h1>Add new recipes</h1>
 }
 
 
@@ -120,7 +116,7 @@ export default function() {
         <>
         <div id="container">
             <div id="top-screen">
-                <Title />
+                <Title title="Add new recipes"/>
                 <AddRecipesForm 
                     recipiesArray={recipiesArray} 
                     setRecipiesArray={setRecipiesArray}
