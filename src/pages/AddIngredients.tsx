@@ -47,11 +47,13 @@ function InputForm({
   setIngredientsArray: React.Dispatch<React.SetStateAction<IngredientType[]>>;
 }) {
 
-  const [inputData, setInputData] = useState<IngredientType>({
-    name: "", 
-    quantity: 0, 
-    unit: "" 
-  });
+  const defaultInputData: IngredientType = {
+    name: "",
+    quantity: 0,
+    unit: ""
+  }
+
+  const [inputData, setInputData] = useState<IngredientType>(defaultInputData);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value} = event.target;
@@ -65,11 +67,7 @@ function InputForm({
     event.preventDefault();
     
     // reset the input fields after data is submitted
-    setInputData({
-      name: "",
-      quantity: 0,
-      unit: ""
-    })
+    setInputData(defaultInputData);
 
     const ingredient: IngredientType = {
       name: inputData.name,
@@ -87,10 +85,8 @@ function InputForm({
     localStorage.setItem("ingredients", JSON.stringify(updatedArray));
 
     // todo
-    // fix styling
     // how to remove ingredients - if pressed or double clicked - do you want to delete?
     // instead of deleting - readjust the amount you have - pop up window, update databse
-    // how to compare ingredients against recipes    
   }
 
   return (
