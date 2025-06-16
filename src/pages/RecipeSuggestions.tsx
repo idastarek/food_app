@@ -1,14 +1,11 @@
 import "../styles/RecipeSuggestions.scss";
 import recipes from '../../src/data/recipes.json';
+import { Title } from '../components.tsx';
+
 
 console.log("all recipes", recipes);
 console.log("recipies length", recipes.length);
 
-
-
-function Title() {
-    return <h1>How about...</h1>
-}
 
 function Recipe() {
     return (
@@ -73,7 +70,7 @@ export default function RecipeSuggestions() {
         <>
             <div id="container">
                 <div id="top-screen">
-                    <Title />
+                    <Title title="How about..." />
                 </div>
                 <RecipesGrid />
             </div>
