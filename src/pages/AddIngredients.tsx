@@ -45,7 +45,14 @@ function InputForm({
 }: {
   ingredientsArray: IngredientType[];
   setIngredientsArray: React.Dispatch<React.SetStateAction<IngredientType[]>>;
-}) {
+},
+  // { inputData,
+  // setInputData
+  // }: {
+  //   inpuData: 
+  //   setInputData: 
+  // }
+) {
 
   const defaultInputData: IngredientType = {
     name: "",
@@ -167,6 +174,11 @@ export default function AddIngredients() {
   );
 
   // todo: add to local storage here
+
+  // lift up the inpuData state to be able to move submit logic and adding to local storage here
+  // const [inputData, setInputData] = useState<IngredientType>(defaultInputData);
+
+
 
   return (
     <>
