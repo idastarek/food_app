@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import '../styles/InputForm.scss';
-import { Title } from '../components.tsx';
+import { Title, InputField } from '../components.tsx';
 
 interface IngredientType  {
   name: string;
@@ -23,7 +23,6 @@ function Ingredient({ name, quantity, unit }: IngredientType) {
 
 function IngredientsGrid({ ingredientsArray }: {ingredientsArray: IngredientType[] }) {
   {/* dynamically render ingredients from the state array */}
-
   return (
     <div className="ingredients-container-outer">
     <div className="ingredients-container-inner">
@@ -39,28 +38,40 @@ function IngredientsGrid({ ingredientsArray }: {ingredientsArray: IngredientType
 }
 
 
-function InputForm({
-  ingredientsArray,
-  setIngredientsArray
-}: {
-  ingredientsArray: IngredientType[];
-  setIngredientsArray: React.Dispatch<React.SetStateAction<IngredientType[]>>;
-},
-  // { inputData,
-  // setInputData
-  // }: {
-  //   inpuData: 
-  //   setInputData: 
-  // }
-) {
+    // todo
+    // how to remove ingredients - if pressed or double clicked - do you want to delete?
+    // instead of deleting - readjust the amount you have - pop up window, update databse
 
+
+
+function GetRecipesButton() {
+  const navigate = useNavigate();
+  function handleRedirect() {
+    navigate("/recipe-suggestions");
+  }
+
+  return (
+    <>
+        <div id="get-recipes-btn">
+            {/* // todo: make navigation conditional on item presence */}
+            <button onClick={handleRedirect}>Get recipes!</button>
+        </div>
+    </>
+  );
+}
+
+
+export default function AddIngredients() {
+
+  // initialise an array to store ingredient objects
+  const [ingredientsArray, setIngredientsArray] = useState<IngredientType[]>([]);
+
+  // default data for the input fields
   const defaultInputData: IngredientType = {
     name: "",
     quantity: 0,
     unit: ""
   }
-
-  const [inputData, setInputData] = useState<IngredientType>(defaultInputData);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value} = event.target;
@@ -69,6 +80,9 @@ function InputForm({
       [name]: value 
     }));
   };
+
+  // lift up the inpuData state to be able to move submit logic and adding to local storage here
+  const [inputData, setInputData] = useState<IngredientType>(defaultInputData);
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -90,106 +104,39 @@ function InputForm({
     console.log("ingredients array", updatedArray);
 
     localStorage.setItem("ingredients", JSON.stringify(updatedArray));
-
-    // todo
-    // how to remove ingredients - if pressed or double clicked - do you want to delete?
-    // instead of deleting - readjust the amount you have - pop up window, update databse
   }
-
-  return (
-    <>
-      <div id="input-fields">
-        <form onSubmit={handleSubmit} >
-          <label htmlFor="ingredient"></label>
-          <input 
-            type="text" 
-            id="ingredient" 
-            className="input-field"
-            name="name" 
-            placeholder="Log your food here"
-            value={inputData.name} 
-            onChange={handleChange} 
-          />
-
-          <div id="form-quantity-fields">
-              <label htmlFor="quantity"></label>
-              <input 
-              type="number" 
-              id="quantity" 
-              className="input-field"
-              name="quantity" 
-              value={inputData.quantity} 
-              onChange={handleChange} 
-              />
-
-              <label htmlFor="unit"></label>
-              <select 
-              id="unit" 
-              className="input-field"
-              name="unit" 
-              value={inputData.unit} 
-              onChange={handleChange} 
-              >
-              <option value="">Select unit</option>
-              <option value="g">grams</option>
-              <option value="kg">kilograms</option>
-              <option value="ml">mililiters</option>
-              <option value="liters">liters</option>
-              <option value="pcs">pieces</option>
-              </select>
-          </div>
-
-          <button type="submit" className="input-field-button">Add ingredient</button>
-        
-        </form>
-      </div>
-    </>
-    )
-}
-
-
-function GetRecipesButton() {
-
-  const navigate = useNavigate();
-  function handleRedirect() {
-    navigate("/recipe-suggestions");
-  }
-
-  return (
-    <>
-        <div id="get-recipes-btn">
-            {/* // todo: make navigation conditional on item presence */}
-            <button onClick={handleRedirect} >Get recipes!</button>
-        </div>
-    </>
-  );
-}
-
-
-export default function AddIngredients() {
-
-  // initialise an array to store ingredient objects
-  const [ingredientsArray, setIngredientsArray] = useState<IngredientType[]>(
-    []
-  );
-
-  // todo: add to local storage here
-
-  // lift up the inpuData state to be able to move submit logic and adding to local storage here
-  // const [inputData, setInputData] = useState<IngredientType>(defaultInputData);
-
-
 
   return (
     <>
         <div id="container">
             <div id="top-screen">
                 <Title title="I currently have..." />
-                <InputForm 
-                  ingredientsArray={ingredientsArray} 
-                  setIngredientsArray={setIngredientsArray} 
-                />                
+                <div id="input-fields">
+                  <form onSubmit={handleSubmit}>
+                    <InputField 
+                        type="text"
+                        inputItem="ingredient"
+                        name="name"
+                        placeholder="Log your food here"
+                        value={inputData.name}
+                        onChange={handleChange}
+                    />
+                    <div id="form-quantity-fields">
+                      <InputField 
+                          type="number"
+                          inputItem="quantity"
+                          name="quantity"
+                          placeholder="0"
+                          value={inputData.quantity}
+                          onChange={handleChange}
+                      />
+                      
+                    </div>
+                  </form>
+                </div>           
             </div>
+
+
             <IngredientsGrid ingredientsArray={ingredientsArray} />
             <GetRecipesButton />
         </div>
