@@ -1,26 +1,28 @@
-import type { ChangeEvent } from 'react';
+import type { ChangeEvent, ElementType } from 'react';
 
 // title component
 export function Title({ title }: {title: string}) {
   return <h1>{title}</h1>
 }
 
-export interface InputFieldType {
-  type: string;
+export interface InputFieldProps {
+  as: ElementType;
+  type?: string;
   inputItem: string;
   name: string;
-  placeholder: string
+  placeholder?: string
   value: string | number;
-  onChange: (e: ChangeEvent<HTMLInputElement>) => void;
+  onChange: (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => void;
+  children?: React.ReactNode;
 }
 
 // single input component 
-export function InputField({ type, inputItem, name, placeholder, value, onChange }: InputFieldType) {
+export function InputField({ as: Component, type, inputItem, name, placeholder, value, onChange, children }: InputFieldProps) {
 
   return (
     <>
       <label htmlFor={inputItem}></label>
-      <input 
+      <Component 
         type={type}
         id={inputItem} 
         className="input-field"
@@ -28,27 +30,35 @@ export function InputField({ type, inputItem, name, placeholder, value, onChange
         placeholder={placeholder}
         value={value} 
         onChange={onChange} 
-      />
+      >
+        {children}
+      </Component>
     </>
   )
 }
 
-export function SelectDropdown() {
+export interface SelectDropdownProps {
+  options: { value: string; label: string }[];
+  inputItem: string;
+  name: string;
+  placeholder?: string;
+  value: string | number;
+  onChange: (e: ChangeEvent<HTMLSelectElement | HTMLInputElement>) => void;
+}
 
-  const options = [
-    { value: "", label: "Select unit" },
-    { value: "g", label: "grams" },
-    { value: "kg", label: "kilograms" },
-    { value: "ml", label: "milliliters" },
-    { value: "l", label: "liters" },
-    { value: "pcs", label: "pieces" },
-  ];
+export function SelectDropdown({ options, inputItem, name, placeholder,value, onChange }: SelectDropdownProps) {
 
   return (
     <>
-    {options.map(({ value, label}) => {
-      <option value={value}>{label}</option>
-    })}
+    
+    <InputField as="select" inputItem={inputItem} name={name} placeholder={placeholder} value={value} onChange={onChange} >
+    
+    {options.map(({ value, label}) => (
+      <option key={value} value={value}>
+        {label}
+      </option>
+    ))}
+    </InputField>
     </>
-  )
+  );
 }

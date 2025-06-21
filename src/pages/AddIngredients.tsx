@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import '../styles/InputForm.scss';
-import { Title, InputField } from '../components.tsx';
+import { Title, InputField, SelectDropdown } from '../components.tsx';
 
 interface IngredientType  {
   name: string;
@@ -114,6 +114,7 @@ export default function AddIngredients() {
                 <div id="input-fields">
                   <form onSubmit={handleSubmit}>
                     <InputField 
+                        as="input"
                         type="text"
                         inputItem="ingredient"
                         name="name"
@@ -121,8 +122,10 @@ export default function AddIngredients() {
                         value={inputData.name}
                         onChange={handleChange}
                     />
+
                     <div id="form-quantity-fields">
                       <InputField 
+                          as="input"
                           type="number"
                           inputItem="quantity"
                           name="quantity"
@@ -130,7 +133,22 @@ export default function AddIngredients() {
                           value={inputData.quantity}
                           onChange={handleChange}
                       />
-                      
+
+                      <SelectDropdown 
+                        options={[
+                          { value: "", label: "Select unit" },
+                          { value: "g", label: "grams" },
+                          { value: "kg", label: "kilograms" },
+                          { value: "ml", label: "milliliters" },
+                          { value: "l", label: "liters" },
+                          { value: "pcs", label: "pieces" },
+                        ]}
+                        inputItem="unit"
+                        name="unit"
+                        placeholder="Select unit"
+                        value={inputData.unit}
+                        onChange={handleChange}
+                      />
                     </div>
                   </form>
                 </div>           
