@@ -1,47 +1,13 @@
 import { useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import '../styles/InputForm.scss';
-import { Title, InputField, SelectDropdown } from '../components.tsx';
-
-interface IngredientType  {
-  name: string;
-  quantity: number;
-  unit: string;
-}
-
-function Ingredient({ name, quantity, unit }: IngredientType) {
-  return (
-    <>
-      <div className="ingredient-container">
-        <h3 className="ingredient-name">{name}</h3>
-        <img src="../../public/images/potato.png" alt={`icon of ${name}`} className="ingredient-icon" />
-        <p className="ingredient-quantity">{quantity} {unit}</p>
-      </div>
-    </>
-  )
-}
-
-function IngredientsGrid({ ingredientsArray }: {ingredientsArray: IngredientType[] }) {
-  {/* dynamically render ingredients from the state array */}
-  return (
-    <div className="ingredients-container-outer">
-    <div className="ingredients-container-inner">
-      {ingredientsArray.map(item => (
-        <Ingredient 
-          name={item.name} 
-          quantity={item.quantity} 
-          unit={item.unit} />
-      ))}
-    </div>
-  </div>
-  )
-}
+import { Title, InputField, SelectDropdown, Button, IngredientsGrid } from '../components.tsx';
+import type { IngredientType } from '../components.tsx';
 
 
-    // todo
-    // how to remove ingredients - if pressed or double clicked - do you want to delete?
-    // instead of deleting - readjust the amount you have - pop up window, update databse
-
+// todo
+// how to remove ingredients - if pressed or double clicked - do you want to delete?
+// instead of deleting - readjust the amount you have - pop up window, update database
 
 
 function GetRecipesButton() {
@@ -54,7 +20,11 @@ function GetRecipesButton() {
     <>
         <div id="get-recipes-btn">
             {/* // todo: make navigation conditional on item presence */}
-            <button onClick={handleRedirect}>Get recipes!</button>
+            <Button 
+              type="button"
+              text="Get recipes!"
+              onClick={handleRedirect}
+            />
         </div>
     </>
   );
@@ -150,11 +120,14 @@ export default function AddIngredients() {
                         onChange={handleChange}
                       />
                     </div>
+                    <Button
+                      type="submit"
+                      text="Add ingredient"
+                      className="input-field-button"
+                    />
                   </form>
                 </div>           
             </div>
-
-
             <IngredientsGrid ingredientsArray={ingredientsArray} />
             <GetRecipesButton />
         </div>
