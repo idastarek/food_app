@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../styles/InputForm.scss';
-import { Title, InputField, SelectDropdown, Button, IngredientsGrid } from '../components.tsx';
+import { Title, InputField, SelectDropdown, Button, ItemsGrid, Ingredient } from '../components.tsx';
 import type { IngredientType } from '../components.tsx';
 
 
@@ -40,7 +40,8 @@ export default function AddIngredients() {
   const defaultInputData: IngredientType = {
     name: "",
     quantity: 0,
-    unit: ""
+    unit: "",
+    imageUrl: "../../public/images/potato.png"
   }
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
@@ -63,7 +64,8 @@ export default function AddIngredients() {
     const ingredient: IngredientType = {
       name: inputData.name,
       quantity: Number(inputData.quantity),
-      unit: inputData.unit
+      unit: inputData.unit,
+      imageUrl: inputData.imageUrl
     } 
     console.log("ingredient", ingredient);
 
@@ -128,7 +130,22 @@ export default function AddIngredients() {
                   </form>
                 </div>           
             </div>
-            <IngredientsGrid ingredientsArray={ingredientsArray} />
+            <div className="ingredients-container-outer">
+              <div className="ingredients-container-inner">
+                <ItemsGrid 
+                  itemsArray={ingredientsArray} 
+                  renderItem={(item, index) => (
+                    <Ingredient
+                      key={item.name + index}
+                      name={item.name}
+                      quantity={item.quantity}
+                      unit={item.unit}
+                      imageUrl={item.imageUrl}
+                    />
+                  )}
+                />
+              </div>
+            </div>
             <GetRecipesButton />
         </div>
     </>

@@ -84,34 +84,63 @@ export interface IngredientType  {
   name: string;
   quantity: number;
   unit: string;
+  imageUrl?: string;
 }
 
 // ingredient component
-export function Ingredient({ name, quantity, unit }: IngredientType) {
+export function Ingredient({ name, quantity, unit, imageUrl }: IngredientType) {
   return (
     <>
       <div className="ingredient-container">
         <h3 className="ingredient-name">{name}</h3>
-        <img src="../../public/images/potato.png" alt={`icon of ${name}`} className="ingredient-icon" />
+        <img src={imageUrl} alt={`icon of ${name}`} className="ingredient-icon" />
         <p className="ingredient-quantity">{quantity} {unit}</p>
       </div>
     </>
   )
 }
 
-// ingredients grid component
-export function IngredientsGrid({ ingredientsArray }: {ingredientsArray: IngredientType[] }) {
-  {/* dynamically render ingredients from the state array */}
+// recipe interface
+export interface RecipeType { 
+  name: string;
+  imageUrl?: string;
+  ingredients: IngredientType[];
+  instructions: string[];
+  time?: number;
+  ingredientsOwned?: number;
+  ingredientsRequired?: number;
+}
+
+// recipe component
+export function Recipe({ name, imageUrl, time, ingredientsOwned, ingredientsRequired }: RecipeType) {
   return (
-    <div className="ingredients-container-outer">
-    <div className="ingredients-container-inner">
-      {ingredientsArray.map(item => (
-        <Ingredient 
-          name={item.name} 
-          quantity={item.quantity} 
-          unit={item.unit} />
-      ))}
-    </div>
-  </div>
+      <>
+          <div className="recipe-container">
+              <img className="recipe-icon" alt="A small icon of a plate of spaghetti" src={imageUrl} />
+              <div className="recipe-name">
+                  <h2>{name}</h2>
+                  <div className="recipe-additional-info">
+                      <p>Time: {time} min</p>
+                      <p>You have {ingredientsOwned}/{ingredientsRequired} ingredients!</p>
+                  </div>
+              </div>
+          </div>
+      </>
+  )
+}
+
+// items grid component interface
+export interface ItemsGridProps<T> {
+  itemsArray: T[];
+  renderItem: (item: T, index: number) => React.ReactNode;
+}
+
+// items grid component
+export function ItemsGrid<T>({ itemsArray, renderItem }: ItemsGridProps<T>) {
+  {/* dynamically render ingredients / recipes from the state array */}
+  return (
+    <>
+      {itemsArray.map((item, index) => renderItem(item, index))}
+    </>
   )
 }
