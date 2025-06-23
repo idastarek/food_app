@@ -4,7 +4,6 @@ import '../styles/InputForm.scss';
 import { Title, InputField, SelectDropdown, Button, ItemsGrid, Ingredient } from '../components.tsx';
 import type { IngredientType } from '../components.tsx';
 
-
 // todo
 // how to remove ingredients - if pressed or double clicked - do you want to delete?
 // instead of deleting - readjust the amount you have - pop up window, update database
@@ -146,7 +145,7 @@ export default function AddIngredients() {
                 />
               </div>
             </div>
-            <GetRecipesButton />
+            {(ingredientsArray.length > 0) && <GetRecipesButton />}
         </div>
     </>
   );
