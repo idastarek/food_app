@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import '../styles/InputForm.scss';
 import { Title, InputField, SelectDropdown, Button, ItemsGrid, Ingredient } from '../components.tsx';
 import type { IngredientType } from '../components.tsx';
+import ingredients from '../../src/data/ingredients.json';
+
 
 // todo
 // how to remove ingredients - if pressed or double clicked - do you want to delete?
@@ -18,7 +20,6 @@ function GetRecipesButton() {
   return (
     <>
         <div id="get-recipes-btn">
-            {/* // todo: make navigation conditional on item presence */}
             <Button 
               type="button"
               text="Get recipes!"
@@ -30,10 +31,14 @@ function GetRecipesButton() {
 }
 
 
-export default function AddIngredients() {
+export default function AddIngredients() {  
+  
+  // set the default ingredients values to the ingredients from the json file
+  const defaultIngredientsValues: IngredientType[] = ingredients;
+  console.log("default ingredients values", defaultIngredientsValues);
 
   // initialise an array to store ingredient objects
-  const [ingredientsArray, setIngredientsArray] = useState<IngredientType[]>([]);
+  const [ingredientsArray, setIngredientsArray] = useState<IngredientType[]>(defaultIngredientsValues);
 
   // default data for the input fields
   const defaultInputData: IngredientType = {
