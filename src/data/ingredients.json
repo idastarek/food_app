@@ -1,22 +1,32 @@
 [
   {
     "name": "Carrot",
-    "image": "/images/carrot.jpg"
+    "quantity": 1,
+    "unit": "kg",
+    "imageUrl": "../../public/images/potato.png"
+  }, 
+  {
+    "name": "Potato",
+    "quantity": 1,
+    "unit": "kg",
+    "imageUrl": "../../public/images/potato.png"
   },
   {
-    "name": "Garlic",
-    "image": "/images/garlic.jpg"
+    "name": "Onion",
+    "quantity": 1,
+    "unit": "kg",
+    "imageUrl": "../../public/images/potato.png"
   },
   {
     "name": "Tomato",
-    "image": "/images/tomato.jpg"
+    "quantity": 1,
+    "unit": "kg",
+    "imageUrl": "../../public/images/potato.png"
   },
   {
     "name": "Cheese",
-    "image": "/images/cheese.jpg"
-  },
-  {
-    "name": "Eggs",
-    "image": "/images/eggs.jpg"
+    "quantity": 1,
+    "unit": "kg",
+    "imageUrl": "../../public/images/potato.png"
   }
 ]
