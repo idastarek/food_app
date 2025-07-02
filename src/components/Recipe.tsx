@@ -1,10 +1,10 @@
-import IngredientType from "./Ingredient";
+import type { IngredientType } from "./Ingredient";
 
 // recipe interface
 export interface RecipeType { 
   name: string;
   imageUrl?: string;
-  ingredients: typeof IngredientType[];
+  ingredients: IngredientType[];
   instructions: string[];
   time?: number;
   ingredientsOwned?: number;

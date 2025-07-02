@@ -45,8 +45,8 @@ export default function AddIngredients() {
   // initialise an array to store ingredient objects
   const [ingredientsArray, setIngredientsArray] = useState<IngredientType[]>(defaultIngredientsValues);
 
-  // default data for the input fields
-  const defaultInputData: IngredientType = {
+  // empty input fields - resetting
+  const resetInputData: IngredientType = {
     name: "",
     quantity: "",
     unit: "",
@@ -62,13 +62,13 @@ export default function AddIngredients() {
   };
 
   // lift up the inpuData state to be able to move submit logic and adding to local storage here
-  const [inputData, setInputData] = useState<IngredientType>(defaultInputData);
+  const [inputData, setInputData] = useState<IngredientType>(resetInputData);
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     
     // reset the input fields after data is submitted
-    setInputData(defaultInputData);
+    setInputData(resetInputData);
 
     const ingredient: IngredientType = {
       name: inputData.name,

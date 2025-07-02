@@ -1,68 +1,74 @@
 [
   {
-    "name": "Spaghetti Aglio e Olio",
-    "imageUrl": "/images/spaghetti_aglio_e_olio.jpg",
+    "name": "Tortilla de Papas",
+    "imageUrl": "/images/tortilla_de_papas.jpg",
     "ingredients": [
-      { "name": "Spaghetti", "quantity": 100, "unit": "g" },
-      { "name": "Garlic", "quantity": 2, "unit": "cloves" },
-      { "name": "Olive Oil", "quantity": 2, "unit": "tbsp" },
-      { "name": "Chili Flakes", "quantity": 0.5, "unit": "tsp" },
-      { "name": "Salt", "quantity": 1, "unit": "tsp" }
+      { "name": "potato", "quantity": "3", "unit": "pcs" },
+      { "name": "onion", "quantity": "1", "unit": "pcs" },
+      { "name": "eggs", "quantity": "4", "unit": "pcs" },
+      { "name": "olive oil", "quantity": "3", "unit": "tbsp" },
+      { "name": "salt", "quantity": "1", "unit": "tsp" }
     ],
     "instructions": [
-      "Boil spaghetti in salted water until al dente.",
-      "Meanwhile, sauté garlic and chili flakes in olive oil.",
-      "Drain pasta and add to the pan with the garlic oil.",
-      "Toss everything together and serve hot."
-    ]
+      "Peel and slice the potatoes thinly.",
+      "Finely chop the onion.",
+      "Heat olive oil in a pan and fry the potatoes and onions until soft.",
+      "Beat the eggs with salt in a bowl.",
+      "Drain excess oil and mix potatoes and onions with the eggs.",
+      "Pour back into the pan and cook on low heat until set, flipping once to cook both sides."
+    ],
+    "time": 40
   },
   {
-    "name": "Simple Vegetable Stir Fry",
-    "imageUrl": "/images/vegetable_stir_fry.jpg",
+    "name": "Spaghetti Bolognese (Vegetarian)",
+    "imageUrl": "/images/spaghetti_bolognese_veg.jpg",
     "ingredients": [
-      { "name": "Broccoli", "quantity": 100, "unit": "g" },
-      { "name": "Carrot", "quantity": 1, "unit": "pcs" },
-      { "name": "Bell Pepper", "quantity": 1, "unit": "pcs" },
-      { "name": "Soy Sauce", "quantity": 2, "unit": "tbsp" },
-      { "name": "Garlic", "quantity": 1, "unit": "clove" },
-      { "name": "Oil", "quantity": 1, "unit": "tbsp" }
+      { "name": "spaghetti", "quantity": "100", "unit": "g" },
+      { "name": "lentils", "quantity": "50", "unit": "g" },
+      { "name": "tomato paste", "quantity": "2", "unit": "tbsp" },
+      { "name": "carrot", "quantity": "1", "unit": "pcs" },
+      { "name": "onion", "quantity": "1", "unit": "pcs" },
+      { "name": "garlic", "quantity": "2", "unit": "cloves" },
+      { "name": "olive oil", "quantity": "2", "unit": "tbsp" },
+      { "name": "salt", "quantity": "1", "unit": "tsp" },
+      { "name": "basil", "quantity": "0.5", "unit": "tsp" }
     ],
     "instructions": [
-      "Chop all vegetables into bite-sized pieces.",
-      "Heat oil in a pan and sauté garlic.",
-      "Add all vegetables and stir fry on high heat for 5–7 minutes.",
-      "Add soy sauce, toss well, and serve."
-    ]
+      "Cook lentils according to package instructions.",
+      "Finely chop the carrot, onion, and garlic.",
+      "Heat olive oil in a pan and sauté garlic and onion until translucent.",
+      "Add carrot and cook for a few minutes.",
+      "Add tomato paste, cooked lentils, salt, and basil. Simmer for 10-15 minutes.",
+      "Cook spaghetti in salted boiling water until al dente.",
+      "Combine the sauce with spaghetti and serve hot."
+    ],
+    "time": 45
   },
   {
-    "name": "Tomato Omelette",
-    "imageUrl": "/images/tomato_omelette.jpg",
+    "name": "Matar Paneer",
+    "imageUrl": "/images/matar_paneer.jpg",
     "ingredients": [
-      { "name": "Eggs", "quantity": 2, "unit": "pcs" },
-      { "name": "Tomato", "quantity": 1, "unit": "pcs" },
-      { "name": "Onion", "quantity": 0.5, "unit": "pcs" },
-      { "name": "Salt", "quantity": 0.5, "unit": "tsp" },
-      { "name": "Oil", "quantity": 1, "unit": "tbsp" }
+      { "name": "paneer", "quantity": "200", "unit": "g" },
+      { "name": "green peas", "quantity": "100", "unit": "g" },
+      { "name": "onion", "quantity": "1", "unit": "pcs" },
+      { "name": "tomato", "quantity": "2", "unit": "pcs" },
+      { "name": "garlic", "quantity": "2", "unit": "cloves" },
+      { "name": "ginger", "quantity": "1", "unit": "tsp" },
+      { "name": "cumin seeds", "quantity": "0.5", "unit": "tsp" },
+      { "name": "turmeric", "quantity": "0.5", "unit": "tsp" },
+      { "name": "garam masala", "quantity": "1", "unit": "tsp" },
+      { "name": "oil", "quantity": "2", "unit": "tbsp" },
+      { "name": "salt", "quantity": "1", "unit": "tsp" }
     ],
     "instructions": [
-      "Chop tomato and onion finely.",
-      "Beat eggs with salt, tomato, and onion.",
-      "Heat oil in a non-stick pan.",
-      "Pour the mixture and cook until golden brown on both sides."
-    ]
-  },
-  {
-    "name": "Grilled Cheese Sandwich",
-    "imageUrl": "/images/grilled_cheese.jpg",
-    "ingredients": [
-      { "name": "Bread", "quantity": 2, "unit": "pcs" },
-      { "name": "Cheese", "quantity": 2, "unit": "slices" },
-      { "name": "Butter", "quantity": 1, "unit": "tbsp" }
+      "Chop onions, tomatoes, garlic, and ginger.",
+      "Heat oil in a pan, add cumin seeds and let them splutter.",
+      "Add garlic and ginger, sauté for a minute, then add onions and cook until golden.",
+      "Add tomatoes, turmeric, salt, and cook until soft.",
+      "Add green peas and cook for 5 minutes.",
+      "Add paneer cubes, garam masala, and a splash of water if needed. Simmer for 5-7 minutes.",
+      "Serve hot with rice or roti."
     ],
-    "instructions": [
-      "Butter one side of each bread slice.",
-      "Place cheese between unbuttered sides.",
-      "Grill on a pan until both sides are golden and the cheese is melted."
-    ]
+    "time": 35
   }
 ]

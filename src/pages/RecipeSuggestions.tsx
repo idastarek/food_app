@@ -22,21 +22,7 @@ export default function RecipeSuggestions() {
 
         console.log("ingredients from local storage ", ingredients);
 
-        // basic matching logic 
-        // iterate over every ingredient against every recipe - if there's a match,
-        // create a new object with a key of the recipe and value of the ingredient
-        // keep iterating, if there is a match with a recipe that already exists, 
-        // just add the ingredient as a value
-        // if the key (recipe) hasn't had a match before, create a new key
-
-        // iterate over every ingredient
-        // ingredients.map(ingredient => {
-        //     if (ingredient.name) 
-        // })
-
-        // todo: make the matching logic more elaborated, check the amounts of ingredients
-        // if no ingredient, check for substitutes 
-    } 
+        // matching logic here
 
 
     return (
@@ -64,6 +50,5 @@ export default function RecipeSuggestions() {
                 </div>
             </div>
         </>
-    )
+    )}
 }
-
