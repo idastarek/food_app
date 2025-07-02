@@ -1,7 +1,7 @@
 // ingredient interface
 export interface IngredientType  {
   name: string;
-  quantity: number;
+  quantity: string;
   unit: string;
   imageUrl?: string;
 }

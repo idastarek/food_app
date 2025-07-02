@@ -12,7 +12,7 @@ export interface SelectDropdownProps {
 }
 
 // select dropdown component
-export function SelectDropdown({ options, inputItem, name, placeholder,value, onChange }: SelectDropdownProps) {
+export default function SelectDropdown({ options, inputItem, name, placeholder,value, onChange }: SelectDropdownProps) {
 
   return (
     <>

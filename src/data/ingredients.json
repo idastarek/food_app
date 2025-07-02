@@ -1,31 +1,31 @@
 [
   {
     "name": "Carrot",
-    "quantity": 1,
+    "quantity": "1",
     "unit": "kg",
     "imageUrl": "../../public/images/potato.png"
   }, 
   {
     "name": "Potato",
-    "quantity": 1,
+    "quantity": "1",
     "unit": "kg",
     "imageUrl": "../../public/images/potato.png"
   },
   {
     "name": "Onion",
-    "quantity": 1,
+    "quantity": "1",
     "unit": "kg",
     "imageUrl": "../../public/images/potato.png"
   },
   {
     "name": "Tomato",
-    "quantity": 1,
+    "quantity": "1",
     "unit": "kg",
     "imageUrl": "../../public/images/potato.png"
   },
   {
     "name": "Cheese",
-    "quantity": 1,
+    "quantity": "1",
     "unit": "kg",
     "imageUrl": "../../public/images/potato.png"
   }

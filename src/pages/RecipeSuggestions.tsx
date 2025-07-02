@@ -1,7 +1,9 @@
 import "../styles/RecipeSuggestions.scss";
 import recipes from '../../src/data/recipes.json';
-import { Title, ItemsGrid, Recipe } from '../components.tsx';
-import type { RecipeType } from '../components.tsx';
+import Title from '../components/Title.tsx';
+import ItemsGrid from '../components/ItemsGrid.tsx';
+import Recipe from '../components/Recipe.tsx';
+import type { RecipeType } from '../components/Recipe.tsx';
 
 
 console.log("all recipes", recipes);

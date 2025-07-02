@@ -5,7 +5,7 @@ export interface ItemsGridProps<T> {
 }
 
 // items grid component
-export function ItemsGrid<T>({ itemsArray, renderItem }: ItemsGridProps<T>) {
+export default function ItemsGrid<T>({ itemsArray, renderItem }: ItemsGridProps<T>) {
   {/* dynamically render ingredients / recipes from the state array */}
   return (
     <>

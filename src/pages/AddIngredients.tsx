@@ -1,8 +1,13 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../styles/InputForm.scss';
-import { Title, InputField, SelectDropdown, Button, ItemsGrid, Ingredient } from '../components.tsx';
-import type { IngredientType } from '../components.tsx';
+import Title from '../components/Title.tsx';
+import InputField from '../components/InputField.tsx';
+import SelectDropdown from '../components/SelectDropdown.tsx';
+import Button from '../components/Button.tsx';
+import ItemsGrid from '../components/ItemsGrid.tsx';
+import Ingredient from '../components/Ingredient.tsx';
+import type { IngredientType}  from '../components/Ingredient.tsx';
 import ingredients from '../../src/data/ingredients.json';
 
 
@@ -43,7 +48,7 @@ export default function AddIngredients() {
   // default data for the input fields
   const defaultInputData: IngredientType = {
     name: "",
-    quantity: 0,
+    quantity: "",
     unit: "",
     imageUrl: "../../public/images/potato.png"
   }
@@ -67,7 +72,7 @@ export default function AddIngredients() {
 
     const ingredient: IngredientType = {
       name: inputData.name,
-      quantity: Number(inputData.quantity),
+      quantity: inputData.quantity,
       unit: inputData.unit,
       imageUrl: inputData.imageUrl
     } 
@@ -102,7 +107,7 @@ export default function AddIngredients() {
                     <div id="form-quantity-fields">
                       <InputField 
                           as="input"
-                          type="number"
+                          type="text"
                           inputItem="quantity"
                           name="quantity"
                           placeholder="0"
