@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import "../styles/AddRecipies.scss";
-import { Title } from '../components.tsx';
+import Title from '../components/Title';
 
 
 interface RecipeType {

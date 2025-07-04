@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../styles/InputForm.scss';
 import Title from '../components/Title.tsx';
@@ -19,11 +19,10 @@ import ingredients from '../../src/data/ingredients.json';
 function GetRecipesButton() {
   const navigate = useNavigate();
   function handleRedirect() {
-    navigate("/recipe-suggestions");
+    navigate('/recipe-suggestions');
   }
 
   return (
-    <>
         <div id="get-recipes-btn">
             <Button 
               type="button"
@@ -31,7 +30,6 @@ function GetRecipesButton() {
               onClick={handleRedirect}
             />
         </div>
-    </>
   );
 }
 
@@ -53,6 +51,37 @@ export default function AddIngredients() {
     imageUrl: "../../public/images/potato.png"
   }
 
+  // ingredients currently in the local storage
+  const existingIngredients = localStorage.getItem("ingredients");
+ 
+
+  // adding ingredients from JSON on page load
+  useEffect(() => {
+
+    if (!existingIngredients) {
+      addToLocalStorage();
+      setIngredientsArray(ingredients);
+    } else {
+      readFromLocalStorage();
+    }
+  }, []);
+
+  function addToLocalStorage() {
+    // checking if JSON is not empty
+    if (ingredients.length) {
+      localStorage.setItem("ingredients", JSON.stringify(ingredients));
+      console.log("Added data to local storage on page load.")
+    }
+  }
+
+  function readFromLocalStorage() {
+    if (existingIngredients) {
+      const parsedIngredients = JSON.parse(existingIngredients);
+      setIngredientsArray(parsedIngredients);
+      console.log("Loaded ingredients from local storage", parsedIngredients);
+    }
+  }
+
   const handleChange = (event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value} = event.target;
     setInputData((prev) => ({ 
@@ -60,6 +89,9 @@ export default function AddIngredients() {
       [name]: value 
     }));
   };
+
+  // TODO: Dodać ingeditents on page load. Potem dodawać kolejne onFormSubmit
+  // useEffect
 
   // lift up the inpuData state to be able to move submit logic and adding to local storage here
   const [inputData, setInputData] = useState<IngredientType>(resetInputData);
@@ -74,8 +106,9 @@ export default function AddIngredients() {
       name: inputData.name,
       quantity: inputData.quantity,
       unit: inputData.unit,
-      imageUrl: inputData.imageUrl
-    } 
+      imageUrl: inputData.imageUrl,
+    };
+
     console.log("ingredient", ingredient);
 
     // use the setter to create a new array
