@@ -90,10 +90,6 @@ export default function AddIngredients() {
     }));
   };
 
-  // TODO: Dodać ingeditents on page load. Potem dodawać kolejne onFormSubmit
-  // useEffect
-
-  // lift up the inpuData state to be able to move submit logic and adding to local storage here
   const [inputData, setInputData] = useState<IngredientType>(resetInputData);
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
@@ -115,7 +111,7 @@ export default function AddIngredients() {
     const updatedArray = [...ingredientsArray, ingredient];
     setIngredientsArray(updatedArray);
 
-    console.log("ingredients array", updatedArray);
+    console.log("updated ingredients array", updatedArray);
 
     localStorage.setItem("ingredients", JSON.stringify(updatedArray));
   }
