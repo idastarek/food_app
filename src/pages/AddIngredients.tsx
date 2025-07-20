@@ -51,36 +51,27 @@ export default function AddIngredients() {
     imageUrl: "../../public/images/potato.png"
   }
 
-  // ingredients currently in the local storage
-  const existingIngredients = localStorage.getItem("ingredients");
- 
-
   // adding ingredients from JSON on page load
   useEffect(() => {
 
-    if (!existingIngredients) {
-      addToLocalStorage();
-      setIngredientsArray(ingredients);
-    } else {
-      readFromLocalStorage();
+    try {
+      // check localStorage inside useEffect to get an up-to-date value
+      const existingIngredients = localStorage.getItem("ingredients");
+
+      if (!existingIngredients) {
+        if (ingredients.length) {
+          localStorage.setItem("ingredients", JSON.stringify(ingredients));
+          setIngredientsArray(ingredients);
+        }
+      } else {
+        const parsedIngredients = JSON.parse(existingIngredients);
+        setIngredientsArray(parsedIngredients);
+      } 
+    } catch (error) {
+        console.error("Error with localStorage:", error);
+        setIngredientsArray(ingredients);
     }
   }, []);
-
-  function addToLocalStorage() {
-    // checking if JSON is not empty
-    if (ingredients.length) {
-      localStorage.setItem("ingredients", JSON.stringify(ingredients));
-      console.log("Added data to local storage on page load.")
-    }
-  }
-
-  function readFromLocalStorage() {
-    if (existingIngredients) {
-      const parsedIngredients = JSON.parse(existingIngredients);
-      setIngredientsArray(parsedIngredients);
-      console.log("Loaded ingredients from local storage", parsedIngredients);
-    }
-  }
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value} = event.target;
