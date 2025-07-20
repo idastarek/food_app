@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../styles/InputForm.scss';
 import Title from '../components/Title.tsx';
@@ -19,11 +19,10 @@ import ingredients from '../../src/data/ingredients.json';
 function GetRecipesButton() {
   const navigate = useNavigate();
   function handleRedirect() {
-    navigate("/recipe-suggestions");
+    navigate('/recipe-suggestions');
   }
 
   return (
-    <>
         <div id="get-recipes-btn">
             <Button 
               type="button"
@@ -31,7 +30,6 @@ function GetRecipesButton() {
               onClick={handleRedirect}
             />
         </div>
-    </>
   );
 }
 
@@ -53,6 +51,28 @@ export default function AddIngredients() {
     imageUrl: "../../public/images/potato.png"
   }
 
+  // adding ingredients from JSON on page load
+  useEffect(() => {
+
+    try {
+      // check localStorage inside useEffect to get an up-to-date value
+      const existingIngredients = localStorage.getItem("ingredients");
+
+      if (!existingIngredients) {
+        if (ingredients.length) {
+          localStorage.setItem("ingredients", JSON.stringify(ingredients));
+          setIngredientsArray(ingredients);
+        }
+      } else {
+        const parsedIngredients = JSON.parse(existingIngredients);
+        setIngredientsArray(parsedIngredients);
+      } 
+    } catch (error) {
+        console.error("Error with localStorage:", error);
+        setIngredientsArray(ingredients);
+    }
+  }, []);
+
   const handleChange = (event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value} = event.target;
     setInputData((prev) => ({ 
@@ -61,7 +81,6 @@ export default function AddIngredients() {
     }));
   };
 
-  // lift up the inpuData state to be able to move submit logic and adding to local storage here
   const [inputData, setInputData] = useState<IngredientType>(resetInputData);
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
@@ -74,15 +93,16 @@ export default function AddIngredients() {
       name: inputData.name,
       quantity: inputData.quantity,
       unit: inputData.unit,
-      imageUrl: inputData.imageUrl
-    } 
+      imageUrl: inputData.imageUrl,
+    };
+
     console.log("ingredient", ingredient);
 
     // use the setter to create a new array
     const updatedArray = [...ingredientsArray, ingredient];
     setIngredientsArray(updatedArray);
 
-    console.log("ingredients array", updatedArray);
+    console.log("updated ingredients array", updatedArray);
 
     localStorage.setItem("ingredients", JSON.stringify(updatedArray));
   }
