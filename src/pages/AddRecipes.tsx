@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import "../styles/AddRecipies.scss";
-import { Title } from '../components.tsx';
+import Title from '../components/Title.tsx';
 
 
 interface RecipeType {
@@ -34,7 +34,9 @@ function AddRecipesForm({
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        
+
+        console.log("Handle submit was called!");
+
         // reset the input fields after data is submitted
         setInputData({
             recipeName: "",
@@ -69,7 +71,7 @@ function AddRecipesForm({
                         type="text" 
                         id="recipe-name" 
                         className="input-field"
-                        name="name" 
+                        name="recipeName" 
                         placeholder="Recipe name"
                         value={inputData.recipeName} 
                         onChange={handleChange} 
