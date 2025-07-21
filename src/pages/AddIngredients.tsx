@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import '../styles/InputForm.scss';
+import '../styles/AddIngredients.scss';
 import Title from '../components/Title.tsx';
 import InputField from '../components/InputField.tsx';
 import SelectDropdown from '../components/SelectDropdown.tsx';
