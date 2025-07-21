@@ -107,6 +107,13 @@ export default function AddIngredients() {
     localStorage.setItem("ingredients", JSON.stringify(updatedArray));
   }
 
+  const handleDeleteIngredient = (ingToDelete: string) => {
+    const updatedArray = ingredientsArray.filter(ingredient => ingredient.name !== ingToDelete);
+    setIngredientsArray(updatedArray);
+    console.log("Deleted ingredient: ", ingToDelete);
+    localStorage.setItem("ingredients", JSON.stringify(updatedArray));
+  }
+
   return (
     <>
         <div id="container">
@@ -170,6 +177,7 @@ export default function AddIngredients() {
                       quantity={item.quantity}
                       unit={item.unit}
                       imageUrl={item.imageUrl}
+                      onDelete={() => handleDeleteIngredient(item.name)}
                     />
                   )}
                 />
