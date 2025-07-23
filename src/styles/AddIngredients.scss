@@ -53,8 +53,6 @@ h1 {
     border-radius: 2px;
 }
 
-// todo: why is there extra space to the left of the quantity field?
-
 #form-quantity-fields {
     display: flex;
     gap: 0.3rem;
@@ -79,6 +77,7 @@ h1 {
     font-size: 1rem;
     border-radius: 2px;
     padding: 0.6rem 1.2rem;
+    cursor: pointer;
 }
 
 
@@ -96,15 +95,15 @@ h1 {
 .ingredients-container-inner {
     display: grid;
     grid-template-columns: 9rem 9rem;
-    border: 2px solid purple;
     max-height: 20rem;       // temporary solution 
 }
 
 .ingredient-container {
-    border: 2px solid black;
+    border: 2px solid #e9ecef;
     display: flex;
     flex-direction: column;
     padding: 1rem 1.6rem;
+    position: relative;
 }
 
 .ingredient-container h3, p {
@@ -116,6 +115,21 @@ h1 {
     width: 5rem;
 }
 
+.remove-ingredient-btn {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0.5rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.remove-ingredient-btn img {
+    height: 1.2rem;
+    width: 1.2rem;
+}
+
 #get-recipes-btn {
     display: flex;
     justify-content: center;
@@ -123,7 +137,6 @@ h1 {
     position: absolute;
     bottom: 0;
     margin-bottom: 0;
-    // margin-top: 1rem;
 }
 
 #get-recipes-btn button {
@@ -139,4 +152,5 @@ h1 {
     color: #ffffff;
     width: 16rem;
     margin-top: auto;
+    cursor: pointer;
 }

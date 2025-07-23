@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import '../styles/InputForm.scss';
+import '../styles/AddIngredients.scss';
 import Title from '../components/Title.tsx';
 import InputField from '../components/InputField.tsx';
 import SelectDropdown from '../components/SelectDropdown.tsx';
@@ -9,11 +9,6 @@ import ItemsGrid from '../components/ItemsGrid.tsx';
 import Ingredient from '../components/Ingredient.tsx';
 import type { IngredientType}  from '../components/Ingredient.tsx';
 import ingredients from '../../src/data/ingredients.json';
-
-
-// todo
-// how to remove ingredients - if pressed or double clicked - do you want to delete?
-// instead of deleting - readjust the amount you have - pop up window, update database
 
 
 function GetRecipesButton() {
@@ -107,6 +102,19 @@ export default function AddIngredients() {
     localStorage.setItem("ingredients", JSON.stringify(updatedArray));
   }
 
+  // TODO: 
+  // (1) if user adds ingredient already present, combine the amounts rather than having
+  // two separate ingredients
+  // (2) "are you sure you want to delete?" notification
+  // (3) long pressing / double clicking ingredient allows the user to readjust the quantity / delete
+
+
+  const handleDeleteIngredient = (ingToDelete: string) => {
+    const updatedArray = ingredientsArray.filter(ingredient => ingredient.name !== ingToDelete);
+    setIngredientsArray(updatedArray);
+    localStorage.setItem("ingredients", JSON.stringify(updatedArray));
+  }
+
   return (
     <>
         <div id="container">
@@ -170,6 +178,7 @@ export default function AddIngredients() {
                       quantity={item.quantity}
                       unit={item.unit}
                       imageUrl={item.imageUrl}
+                      onDelete={() => handleDeleteIngredient(item.name)}
                     />
                   )}
                 />
