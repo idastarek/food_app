@@ -14,12 +14,16 @@ export default function Ingredient({ name, quantity, unit, imageUrl, onDelete }:
       <div className="ingredient-container">
         <h3 className="ingredient-name">{name}</h3>
         <img src={imageUrl} alt={`icon of ${name}`} className="ingredient-icon" />
-        <img 
-          src="/images/x-button.png" 
-          alt="remove ingredient" 
+        <button
+          onClick={onDelete}
           className="remove-ingredient-btn" 
-          onClick={onDelete} 
-        />
+          aria-label={`Remove ${name}`}
+        >
+          <img 
+            src="/images/x-button.png" 
+            alt="remove ingredient" 
+          />
+        </button>
         <p className="ingredient-quantity">{quantity} {unit}</p>
       </div>
     </>

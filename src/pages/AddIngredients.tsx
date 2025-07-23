@@ -112,7 +112,6 @@ export default function AddIngredients() {
   const handleDeleteIngredient = (ingToDelete: string) => {
     const updatedArray = ingredientsArray.filter(ingredient => ingredient.name !== ingToDelete);
     setIngredientsArray(updatedArray);
-    console.log("Deleted ingredient: ", ingToDelete);
     localStorage.setItem("ingredients", JSON.stringify(updatedArray));
   }
 
