@@ -9,6 +9,7 @@ import ItemsGrid from '../components/ItemsGrid.tsx';
 import Ingredient from '../components/Ingredient.tsx';
 import type { IngredientType}  from '../components/Ingredient.tsx';
 import ingredients from '../../src/data/ingredients.json';
+import { hasEmptyFields } from '../utils/formValidation.ts'
 
 
 function GetRecipesButton() {
@@ -80,9 +81,6 @@ export default function AddIngredients() {
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    
-    // reset the input fields after data is submitted
-    setInputData(resetInputData);
 
     const ingredient: IngredientType = {
       name: inputData.name,
@@ -93,13 +91,25 @@ export default function AddIngredients() {
 
     console.log("ingredient", ingredient);
 
-    // use the setter to create a new array
+
+    // TODO add an error state and message for each input
+
+    // validate if none of the fields was left empty
+    if (hasEmptyFields(ingredient, ['name', 'quantity', 'unit'])) {
+      alert("At least one of the fields is empty!");
+      return;
+    }
+
+    // update state by creating a new ingredients array including the new ingredient
     const updatedArray = [...ingredientsArray, ingredient];
     setIngredientsArray(updatedArray);
 
     console.log("updated ingredients array", updatedArray);
 
     localStorage.setItem("ingredients", JSON.stringify(updatedArray));
+
+    // reset the input fields after data is submitted
+    setInputData(resetInputData);
   }
 
   // TODO: 
@@ -184,7 +194,7 @@ export default function AddIngredients() {
                 />
               </div>
             </div>
-            {(ingredientsArray.length > 0) && <GetRecipesButton />}
+            {(ingredientsArray.length > 0) && <GetRecipesButton/>}
         </div>
     </>
   );

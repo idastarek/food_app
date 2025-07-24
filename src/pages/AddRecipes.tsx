@@ -34,7 +34,7 @@ function AddRecipesForm({
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        
+
         // reset the input fields after data is submitted
         setInputData({
             recipeName: "",
@@ -69,7 +69,7 @@ function AddRecipesForm({
                         type="text" 
                         id="recipe-name" 
                         className="input-field"
-                        name="name" 
+                        name="recipeName" 
                         placeholder="Recipe name"
                         value={inputData.recipeName} 
                         onChange={handleChange} 
