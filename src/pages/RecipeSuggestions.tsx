@@ -40,6 +40,7 @@ export default function RecipeSuggestions() {
         console.log('ingredients from local storage ', ingredients);
 
         // matching logic here
+    
 
 
     return (
