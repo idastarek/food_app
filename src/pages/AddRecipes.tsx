@@ -35,8 +35,6 @@ function AddRecipesForm({
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 
-        console.log("Handle submit was called!");
-
         // reset the input fields after data is submitted
         setInputData({
             recipeName: "",

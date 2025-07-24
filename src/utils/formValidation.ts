@@ -1,4 +1,4 @@
-export default function hasEmptyFields<T extends object>(
+export function hasEmptyFields<T extends object>(
     object: T,
     fieldsToCheck: (keyof T)[]
 ): boolean {

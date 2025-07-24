@@ -9,7 +9,7 @@ import ItemsGrid from '../components/ItemsGrid.tsx';
 import Ingredient from '../components/Ingredient.tsx';
 import type { IngredientType}  from '../components/Ingredient.tsx';
 import ingredients from '../../src/data/ingredients.json';
-import hasEmptyFields from '../utils/formValidation.ts'
+import { hasEmptyFields } from '../utils/formValidation.ts'
 
 
 // todo
@@ -75,6 +75,9 @@ export default function AddIngredients() {
       imageUrl: inputData.imageUrl
     } 
     console.log("ingredient", ingredient);
+
+
+    // TODO add an error state and message for each input
 
     // validate if none of the fields was left empty
     if (hasEmptyFields(ingredient, ['name', 'quantity', 'unit'])) {
