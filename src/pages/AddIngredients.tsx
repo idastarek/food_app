@@ -1,6 +1,6 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import '../styles/InputForm.scss';
+import '../styles/AddIngredients.scss';
 import Title from '../components/Title.tsx';
 import InputField from '../components/InputField.tsx';
 import SelectDropdown from '../components/SelectDropdown.tsx';
@@ -12,19 +12,13 @@ import ingredients from '../../src/data/ingredients.json';
 import { hasEmptyFields } from '../utils/formValidation.ts'
 
 
-// todo
-// how to remove ingredients - if pressed or double clicked - do you want to delete?
-// instead of deleting - readjust the amount you have - pop up window, update database
-
-
 function GetRecipesButton() {
   const navigate = useNavigate();
   function handleRedirect() {
-    navigate("/recipe-suggestions");
+    navigate('/recipe-suggestions');
   }
 
   return (
-    <>
         <div id="get-recipes-btn">
             <Button 
               type="button"
@@ -32,7 +26,6 @@ function GetRecipesButton() {
               onClick={handleRedirect}
             />
         </div>
-    </>
   );
 }
 
@@ -54,6 +47,28 @@ export default function AddIngredients() {
     imageUrl: "../../public/images/potato.png"
   }
 
+  // adding ingredients from JSON on page load
+  useEffect(() => {
+
+    try {
+      // check localStorage inside useEffect to get an up-to-date value
+      const existingIngredients = localStorage.getItem("ingredients");
+
+      if (!existingIngredients) {
+        if (ingredients.length) {
+          localStorage.setItem("ingredients", JSON.stringify(ingredients));
+          setIngredientsArray(ingredients);
+        }
+      } else {
+        const parsedIngredients = JSON.parse(existingIngredients);
+        setIngredientsArray(parsedIngredients);
+      } 
+    } catch (error) {
+        console.error("Error with localStorage:", error);
+        setIngredientsArray(ingredients);
+    }
+  }, []);
+
   const handleChange = (event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value} = event.target;
     setInputData((prev) => ({ 
@@ -62,7 +77,6 @@ export default function AddIngredients() {
     }));
   };
 
-  // lifted up the inpuData state to be able to move submit logic and adding to local storage here
   const [inputData, setInputData] = useState<IngredientType>(resetInputData);
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
@@ -72,8 +86,9 @@ export default function AddIngredients() {
       name: inputData.name,
       quantity: inputData.quantity,
       unit: inputData.unit,
-      imageUrl: inputData.imageUrl
-    } 
+      imageUrl: inputData.imageUrl,
+    };
+
     console.log("ingredient", ingredient);
 
 
@@ -89,12 +104,25 @@ export default function AddIngredients() {
     const updatedArray = [...ingredientsArray, ingredient];
     setIngredientsArray(updatedArray);
 
-    console.log("ingredients array", updatedArray);
+    console.log("updated ingredients array", updatedArray);
 
     localStorage.setItem("ingredients", JSON.stringify(updatedArray));
 
     // reset the input fields after data is submitted
     setInputData(resetInputData);
+  }
+
+  // TODO: 
+  // (1) if user adds ingredient already present, combine the amounts rather than having
+  // two separate ingredients
+  // (2) "are you sure you want to delete?" notification
+  // (3) long pressing / double clicking ingredient allows the user to readjust the quantity / delete
+
+
+  const handleDeleteIngredient = (ingToDelete: string) => {
+    const updatedArray = ingredientsArray.filter(ingredient => ingredient.name !== ingToDelete);
+    setIngredientsArray(updatedArray);
+    localStorage.setItem("ingredients", JSON.stringify(updatedArray));
   }
 
   return (
@@ -160,6 +188,7 @@ export default function AddIngredients() {
                       quantity={item.quantity}
                       unit={item.unit}
                       imageUrl={item.imageUrl}
+                      onDelete={() => handleDeleteIngredient(item.name)}
                     />
                   )}
                 />
