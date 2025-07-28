@@ -144,4 +144,11 @@ export default function computeRecipeMatches(
         matches[recipe.name]["_score"] = matchingScore;
         console.log(matches);
     });
+
+    return recipes
+    .map((recipe) => ({
+        ...recipe,
+        matchingScore: Number(matches[recipe.name]["_score"]),
+    }))
+    .sort((a, b) => b.matchingScore - a.matchingScore);
 }

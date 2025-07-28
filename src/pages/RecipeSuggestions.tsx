@@ -4,7 +4,8 @@ import Title from '../components/Title.tsx';
 import ItemsGrid from '../components/ItemsGrid.tsx';
 import Recipe from '../components/Recipe.tsx';
 import type { RecipeType } from '../components/Recipe.tsx';
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
+import computeRecipeMatches from '../utils/matchingLogic.ts';
 
 
 console.log('all recipes', recipes);
@@ -32,16 +33,17 @@ export default function RecipeSuggestions() {
     // temporarily set the recipes array to the recipes from the json file
     const recipesArray: RecipeType[] = recipes;
 
-    const localStorageData = localStorage.getItem('ingredients');
+    const [sortedRescipes, setSortedRecipes] = useState<RecipeType[]>([]);
 
-    if (localStorageData) {
-        const ingredients = JSON.parse(localStorageData);
-
-        console.log('ingredients from local storage ', ingredients);
-
-        // matching logic here
-    
-
+    useEffect(() => {
+        const localStorageIngredients = localStorage.getItem('ingredients');
+        if (localStorageIngredients) {
+            const ingredients = JSON.parse(localStorageIngredients);
+            console.log('ingredients from local storage ', ingredients);
+            const recipesWithScores = computeRecipeMatches(ingredients, recipes);
+            setSortedRecipes(recipesWithScores);
+        }
+    }, []);
 
     return (
         <>
@@ -51,7 +53,7 @@ export default function RecipeSuggestions() {
                 </div>
                 <div className="recipes-container">
                     <ItemsGrid 
-                        itemsArray={recipesArray} 
+                        itemsArray={sortedRescipes} 
                         renderItem={(item, index) => (
                             <Recipe
                                 key={item.name + index}
@@ -69,4 +71,3 @@ export default function RecipeSuggestions() {
             </div>
         </>
     )}
-}
