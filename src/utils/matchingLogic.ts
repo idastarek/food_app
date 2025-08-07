@@ -1,10 +1,26 @@
 import type { IngredientType } from "../components/Ingredient";
 import type { RecipeType } from "../components/Recipe";
 
+interface MatchedRecipe extends RecipeType {
+    matchingScore: number;
+}
+
+type Unit = 'kg' | 'g' | 'l' | 'ml' | 'tbsp' | 'tsp';
+
+interface UnitConversion {
+    factor: number;
+    unit: string;
+}
+
+interface NormalisedIngredient {
+    quantity: number,
+    unit: string;
+}
+
 export default function computeRecipeMatches(
     userIngredients: IngredientType[],
     recipesArray: RecipeType[]
-){
+): MatchedRecipe[] {
 
     // transform ingredients data type for matching logic
     function convertIngredientsArrayToMatcherFormat(
@@ -45,7 +61,7 @@ export default function computeRecipeMatches(
     }
 
 
-    const unitConversions = {
+    const unitConversions: Record<Unit, UnitConversion> = {
         kg: { factor: 1000, unit: "g" },
         g: { factor: 1, unit: "g" },
         l: { factor: 1000, unit: "ml" },
@@ -55,7 +71,7 @@ export default function computeRecipeMatches(
     };
 
     // convert units
-    function convertUnits(quantity: number, unit: string): {quantity: number; unit: string} {
+    function convertUnits(quantity: number, unit: string): NormalisedIngredient {
         if (unit in unitConversions) {
             const conversion = unitConversions[unit as keyof typeof unitConversions];
             const factor = conversion.factor;
@@ -119,7 +135,12 @@ export default function computeRecipeMatches(
         let matchingScore = 0;
 
         // determine if user has ingredient needed for recipe
-        if (!recipe.sanitisedIngredients) return;
+        if (!recipe.sanitisedIngredients) {
+            console.warn(`No sanitised ingredients found for recipe ${recipe.name}`)
+            matches[recipe.name]["_score"] = 0;
+            return
+        }
+
         recipe.sanitisedIngredients.forEach(
             (recipeIngredient, sanitisedRecipeIngName) => {
             if (sanitisedUserIngMap.has(sanitisedRecipeIngName)) {

@@ -40,7 +40,7 @@ export default function RecipeSuggestions() {
         if (localStorageIngredients) {
             const ingredients = JSON.parse(localStorageIngredients);
             console.log('ingredients from local storage ', ingredients);
-            const recipesWithScores = computeRecipeMatches(ingredients, recipes);
+            const recipesWithScores = computeRecipeMatches(ingredients, recipesArray);
             setSortedRecipes(recipesWithScores);
         }
     }, []);
