@@ -5,6 +5,7 @@ export interface RecipeType {
   name: string;
   imageUrl?: string;
   ingredients: IngredientType[];
+  sanitisedIngredients?: Map<string, { quantity: number; unit: string }>;
   instructions: string[];
   time?: number;
   ingredientsOwned?: number;
