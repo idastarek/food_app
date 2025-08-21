@@ -8,7 +8,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    position: relative;  // to keep get recipes button at the bottom
+    position: relative;  // to keep 'get recipes' button at the bottom of the screen
     border: 2px solid pink;
     height: 100vh;
 }
@@ -125,10 +125,11 @@ h1 {
     cursor: pointer;
 }
 
-.remove-ingredient-btn img {
-    height: 1.2rem;
-    width: 1.2rem;
-}
+// replaced with Tailwind CSS 
+// .remove-ingredient-btn img {
+//     height: 1.2rem;
+//     width: 1.2rem;
+// }
 
 #get-recipes-btn {
     display: flex;

@@ -22,6 +22,7 @@ export default function Ingredient({ name, quantity, unit, imageUrl, onDelete }:
           <img 
             src="/images/x-button.png" 
             alt="remove ingredient" 
+            className="h-5 w-5"
           />
         </button>
         <p className="ingredient-quantity">{quantity} {unit}</p>
