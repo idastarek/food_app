@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon --exec \"tsx\" index.ts",
+    "dev": "nodemon --exec \"tsx\" src/index.ts",
     "build": "tsc",
     "start": "node dist/index.js"
   },
@@ -23,6 +23,9 @@
     "typescript": "^5.9.2"
   },
   "dependencies": {
-    "dotenv": "^17.2.1"
+    "@types/cors": "^2.8.19",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.1",
+    "pg": "^8.16.3"
   }
 }
