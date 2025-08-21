@@ -1,9 +1,22 @@
-import { query } from '../db';
+import * as clientServices from '../services/clientServices';
+import { Request, Response } from 'express';
 
-const getClients = async () => {
-    const result = await query('SELECT * FROM clients', []);
-    return result.rows;
+export const getIngredients = async (req: Request, res: Response) => {
+    try {
+        const ingredients = await clientServices.getAllIngredients();
+        res.status(200).json(ingredients);
+    } catch (error) {
+        console.error('Error fetching ingredients:', error);
+        res.status(500).json({ message: 'Internal server error' });
+    }
 }
 
-
-// const clientService = require('../services/userService');
+export const createIngredient = async (req: Request, res: Response) => {
+    try {
+        const ingredient = await clientServices.createIngredient(req.body);
+        res.status(201).json(ingredient);
+    } catch (error) {
+        console.error('Error creating ingredient:', error);
+        res.status(500).json({ message: 'Internal server error' });
+    }
+}
