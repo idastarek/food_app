@@ -158,7 +158,7 @@ export default function AddIngredients() {
                         as="input"
                         type="text"
                         inputItem="ingredient"
-                        name="name"
+                        name="ingredient_name"
                         placeholder="Log your food here"
                         value={inputData.ingredient_name}
                         onChange={handleChange}
@@ -169,7 +169,7 @@ export default function AddIngredients() {
                           as="input"
                           type="text"
                           inputItem="quantity"
-                          name="quantity"
+                          name="ingredient_quantity"
                           placeholder="0"
                           value={inputData.ingredient_quantity}
                           onChange={handleChange}
@@ -185,7 +185,7 @@ export default function AddIngredients() {
                           { value: "pcs", label: "pieces" },
                         ]}
                         inputItem="unit"
-                        name="unit"
+                        name="ingredient_unit"
                         placeholder="Select unit"
                         value={inputData.ingredient_unit}
                         onChange={handleChange}
