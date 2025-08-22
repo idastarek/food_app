@@ -41,9 +41,9 @@ export default function AddIngredients() {
 
   // empty input fields - resetting
   const resetInputData: IngredientType = {
-    name: "",
-    quantity: "",
-    unit: "",
+    ingredient_name: "",
+    ingredient_quantity: "",
+    ingredient_unit: "",
     imageUrl: "../../public/images/potato.png"
   }
 
@@ -83,9 +83,9 @@ export default function AddIngredients() {
     event.preventDefault();
 
     const ingredient: IngredientType = {
-      name: inputData.name,
-      quantity: inputData.quantity,
-      unit: inputData.unit,
+      ingredient_name: inputData.ingredient_name,
+      ingredient_quantity: inputData.ingredient_quantity,
+      ingredient_unit: inputData.ingredient_unit,
       imageUrl: inputData.imageUrl,
     };
 
@@ -95,7 +95,7 @@ export default function AddIngredients() {
     // TODO add an error state and message for each input
 
     // validate if none of the fields was left empty
-    if (hasEmptyFields(ingredient, ['name', 'quantity', 'unit'])) {
+    if (hasEmptyFields(ingredient, ['ingredient_name', 'ingredient_quantity', 'ingredient_unit'])) {
       alert("At least one of the fields is empty!");
       return;
     }
@@ -107,6 +107,28 @@ export default function AddIngredients() {
     console.log("updated ingredients array", updatedArray);
 
     localStorage.setItem("ingredients", JSON.stringify(updatedArray));
+
+    console.log("ingredient", ingredient);
+
+    // send the new ingredient to the backend
+    fetch('http://localhost:3000/api/ingredients', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'Application/JSON',
+      },
+      body: JSON.stringify(ingredient),
+    })
+
+      .then((respose) => {
+        console.log(respose.json());
+        console.log("new ingredient", ingredient);
+        return respose.json();
+      })
+      
+
+      .catch((error) => {
+        console.log(error);
+      });
 
     // reset the input fields after data is submitted
     setInputData(resetInputData);
@@ -120,7 +142,7 @@ export default function AddIngredients() {
 
 
   const handleDeleteIngredient = (ingToDelete: string) => {
-    const updatedArray = ingredientsArray.filter(ingredient => ingredient.name !== ingToDelete);
+    const updatedArray = ingredientsArray.filter(ingredient => ingredient.ingredient_name !== ingToDelete);
     setIngredientsArray(updatedArray);
     localStorage.setItem("ingredients", JSON.stringify(updatedArray));
   }
@@ -138,7 +160,7 @@ export default function AddIngredients() {
                         inputItem="ingredient"
                         name="name"
                         placeholder="Log your food here"
-                        value={inputData.name}
+                        value={inputData.ingredient_name}
                         onChange={handleChange}
                     />
 
@@ -149,7 +171,7 @@ export default function AddIngredients() {
                           inputItem="quantity"
                           name="quantity"
                           placeholder="0"
-                          value={inputData.quantity}
+                          value={inputData.ingredient_quantity}
                           onChange={handleChange}
                       />
 
@@ -165,7 +187,7 @@ export default function AddIngredients() {
                         inputItem="unit"
                         name="unit"
                         placeholder="Select unit"
-                        value={inputData.unit}
+                        value={inputData.ingredient_unit}
                         onChange={handleChange}
                       />
                     </div>
@@ -183,12 +205,12 @@ export default function AddIngredients() {
                   itemsArray={ingredientsArray} 
                   renderItem={(item, index) => (
                     <Ingredient
-                      key={item.name + index}
-                      name={item.name}
-                      quantity={item.quantity}
-                      unit={item.unit}
+                      key={item.ingredient_name + index}
+                      ingredient_name={item.ingredient_name}
+                      ingredient_quantity={item.ingredient_quantity}
+                      ingredient_unit={item.ingredient_unit}
                       imageUrl={item.imageUrl}
-                      onDelete={() => handleDeleteIngredient(item.name)}
+                      onDelete={() => handleDeleteIngredient(item.ingredient_name)}
                     />
                   )}
                 />

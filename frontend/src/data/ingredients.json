@@ -1,32 +1,32 @@
 [
   {
-    "name": "Carrot",
-    "quantity": "1",
-    "unit": "kg",
+    "ingredient_name": "Carrot",
+    "ingredient_quantity": "1",
+    "ingredient_unit": "kg",
     "imageUrl": "../../public/images/potato.png"
   }, 
   {
-    "name": "Potato",
-    "quantity": "1",
-    "unit": "kg",
+    "ingredient_name": "Potato",
+    "ingredient_quantity": "1",
+    "ingredient_unit": "kg",
     "imageUrl": "../../public/images/potato.png"
   },
   {
-    "name": "Onion",
-    "quantity": "1",
-    "unit": "kg",
+    "ingredient_name": "Onion",
+    "ingredient_quantity": "1",
+    "ingredient_unit": "kg",
     "imageUrl": "../../public/images/potato.png"
   },
   {
-    "name": "Tomato",
-    "quantity": "1",
-    "unit": "kg",
+    "ingredient_name": "Tomato",
+    "ingredient_quantity": "1",
+    "ingredient_unit": "kg",
     "imageUrl": "../../public/images/potato.png"
   },
   {
-    "name": "Cheese",
-    "quantity": "1",
-    "unit": "kg",
+    "ingredient_name": "Cheese",
+    "ingredient_quantity": "1",
+    "ingredient_unit": "kg",
     "imageUrl": "../../public/images/potato.png"
   }
 ]
