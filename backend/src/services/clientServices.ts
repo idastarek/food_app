@@ -1,5 +1,7 @@
-import { query } from '../db';
-interface IngredientType {
+// Temporary in-memory storage for development
+let ingredients: IngredientType[] = [];
+
+export interface IngredientType {
   ingredient_name: string;
   ingredient_quantity: string;
   ingredient_unit: string;
@@ -7,14 +9,14 @@ interface IngredientType {
 }
 
 export const getAllIngredients = async () => {
-    const res = await query('SELECT * FROM ingredients', []);
-    return res.rows;
+    return ingredients;
 };
 
 export const createIngredient = async (ingredientData: IngredientType) => {
-    const {ingredient_name, ingredient_quantity, ingredient_unit} = ingredientData;
-    const { rows } = await query(`
-        INSERT INTO ingredients (ingredient_name, ingredient_quantity, ingredient_unit) 
-        VALUES ($1, $2, $3) RETURNING *`, [ingredient_name, ingredient_quantity, ingredient_unit]);
-    return rows[0];
+    const newIngredient = {
+        ...ingredientData,
+        id: Date.now() // temporary ID
+    };
+    ingredients.push(newIngredient);
+    return newIngredient;
 }
