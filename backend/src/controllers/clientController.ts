@@ -1,6 +1,5 @@
 import * as clientServices from '../services/clientServices';
 import { Request, Response } from 'express';
-import { IngredientType } from '../services/clientServices';
 
 export const getIngredients = async (req: Request, res: Response) => {
     try {
@@ -14,7 +13,7 @@ export const getIngredients = async (req: Request, res: Response) => {
 
 export const createIngredient = async (req: Request, res: Response) => {
     try {
-        const ingredient: IngredientType = await clientServices.createIngredient(req.body);
+        const ingredient = await clientServices.createIngredient(req.body);
         res.status(201).json(ingredient);
     } catch (error) {
         console.error('Error creating ingredient:', error);
