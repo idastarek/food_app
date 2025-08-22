@@ -7,14 +7,20 @@ interface IngredientType {
 }
 
 export const getAllIngredients = async () => {
-    const res = await query('SELECT * FROM ingredients', []);
-    return res.rows;
+  const res = await query('SELECT * FROM ingredients', []);
+  return res.rows;
 };
 
-export const createIngredient = async (ingredientData: IngredientType) => {
-    const {ingredient_name, ingredient_quantity, ingredient_unit} = ingredientData;
-    const { rows } = await query(`
-        INSERT INTO ingredients (ingredient_name, ingredient_quantity, ingredient_unit) 
-        VALUES ($1, $2, $3) RETURNING *`, [ingredient_name, ingredient_quantity, ingredient_unit]);
-    return rows[0];
-}
+export const createIngredient = async (ingredient: IngredientType) => {
+  const { ingredient_name, ingredient_quantity, ingredient_unit } = ingredient;
+
+  const sql = `
+        INSERT INTO public.ingredients (ingredient_name, ingredient_quantity, ingredient_unit)
+        VALUES ($1, $2, $3)
+        RETURNING *;
+    `;
+
+  const values = [ingredient_name, ingredient_quantity, ingredient_unit];
+  const result = await query(sql, values);
+  return result.rows[0];
+};
