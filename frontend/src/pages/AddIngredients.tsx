@@ -10,6 +10,7 @@ import Ingredient from '../components/Ingredient.tsx';
 import type { IngredientType}  from '../components/Ingredient.tsx';
 import ingredients from '../../src/data/ingredients.json';
 import { hasEmptyFields } from '../utils/formValidation.ts'
+import { ingredientIcons } from '../ingredientIcons.ts';
 
 
 function GetRecipesButton() {
@@ -44,7 +45,7 @@ export default function AddIngredients() {
     name: "",
     quantity: "",
     unit: "",
-    imageUrl: "../../public/images/potato.png"
+    imageUrl: ""
   }
 
   // adding ingredients from JSON on page load
@@ -181,16 +182,19 @@ export default function AddIngredients() {
               <div className="ingredients-container-inner">
                 <ItemsGrid 
                   itemsArray={ingredientsArray} 
-                  renderItem={(item, index) => (
-                    <Ingredient
-                      key={item.name + index}
-                      name={item.name}
-                      quantity={item.quantity}
-                      unit={item.unit}
-                      imageUrl={item.imageUrl}
-                      onDelete={() => handleDeleteIngredient(item.name)}
-                    />
+                  renderItem={(item, index) => {
+                    const imageUrl = ingredientIcons[item.name.toLowerCase() || ingredientIcons.default]
+                    return (
+                      <Ingredient
+                        key={item.name + index}
+                        name={item.name}
+                        quantity={item.quantity}
+                        unit={item.unit}
+                        imageUrl={imageUrl}
+                        onDelete={() => handleDeleteIngredient(item.name)}
+                      />
                   )}
+                }
                 />
               </div>
             </div>
