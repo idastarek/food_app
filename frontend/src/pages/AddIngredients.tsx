@@ -183,7 +183,7 @@ export default function AddIngredients() {
                 <ItemsGrid 
                   itemsArray={ingredientsArray} 
                   renderItem={(item, index) => {
-                    const imageUrl = ingredientIcons[item.name.toLowerCase() || ingredientIcons.default]
+                    const imageUrl = ingredientIcons[item.name.toLowerCase()] || ingredientIcons.default
                     return (
                       <Ingredient
                         key={item.name + index}
