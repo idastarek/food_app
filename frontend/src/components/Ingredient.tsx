@@ -20,7 +20,7 @@ export default function Ingredient({ name, quantity, unit, imageUrl, onDelete }:
           aria-label={`Remove ${name}`}
         >
           <img 
-            src="/images/x-button.png" 
+            src="/icons/x-button.png" 
             alt="remove ingredient" 
             className="h-5 w-5"
           />
