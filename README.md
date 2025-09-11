@@ -2,41 +2,47 @@
 
 ## A full-stack application which takes ingredients as input and outputs suggested recipes. Built with React, Vite, TypeScript, ExpressJS and PostgreSQL.
 
-
 ## How to install and run the project
 
-### 1. Clone the repository 
+### 1. Clone the repository
+
 ```
 https://github.com/idastarek/food_app.git
 ```
 
-### 2. Install dependencies 
+### 2. Install dependencies
+
 This project uses pnpm for dependency management.
 
 ### 2.1 Install root dependencies
+
 ```
 pnpm install
 ```
 
 ### 2.2 Install frontend dependencies
+
 ```
 cd frontend
 pnpm install
 ```
 
 ### 2.3 Install backend dependencies
+
 ```
 cd ../backend
 pnpm install
 ```
 
-### 3. Set up Postgre SQL 
+### 3. Set up Postgre SQL
 
-### 3.1 Download PostgreSQL and pgAdmin -  
+### 3.1 Download PostgreSQL and pgAdmin -
+
 https://www.postgresql.org/download/
-https://www.pgadmin.org/ 
+https://www.pgadmin.org/
 
 ### 3.2 Create the user and and the database
+
 ```
 -- Connect as the default postgres superuser
 CREATE USER food_app_user WITH PASSWORD 'your_password';
@@ -46,6 +52,7 @@ CREATE DATABASE food_app_db OWNER food_app_user;
 ### 4. Update .env file
 
 In backend/.env, add your database credentials:
+
 ```
 DB_USER=food_app_user
 DB_PASSWORD=your_password
@@ -55,21 +62,30 @@ DB_PORT=5432
 ```
 
 ### 5. Run the backend server
+
 ```
 pnpm dev
 ```
+
 The server runs on http://localhost:3000
 Note: seeing CANNOT GET / is normal if no root route is defined.
 
-
-### 6. Create the .env file 
+### 6. Create the .env file
 
 Follow the instructions in the .env.example.
 
+### 7. Create tables in the database
 
-### Troubleshooting
+Run the following command to create tables in the database with prisma.
 
-- Backend crashes on startup → check .env and PostgreSQL service.
-- Password authentication failed → ensure food_app_user exists and password matches .env.
-- Cannot GET / or /ingredients → likely the database is empty; seed sample data.
-- Firewall pop-ups → allow Node.js to access private/public networks.
+```
+npx prisma migrate dev --name init
+```
+
+### 8. Seed the database
+
+Run the following command to seed the database with sample data.
+
+```
+npx prisma db seed
+```
