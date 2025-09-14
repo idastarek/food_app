@@ -9,15 +9,15 @@ datasource db {
 }
 
 model ingredients {
-  ingredientId       Int     @id @default(autoincrement())
-  ingredientName     String  @unique
-  ingredientQuantity String
-  ingredientUnit     String
+  id       Int     @id @default(autoincrement())
+  name     String  @unique
+  quantity String
+  unit     String
 }
 
 model recipes {
-  recipeId     Int      @id @default(autoincrement())
+  id     Int      @id @default(autoincrement())
   recipeName   String   @unique
   ingredients  Json
-  instructions String[]
+  instruction String[]
 }

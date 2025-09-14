@@ -2,24 +2,24 @@ import { PrismaClient } from "../generated/prisma";
 const prisma = new PrismaClient();
 
 const initialIngredients = [
-  { ingredientName: "Bread", ingredientQuantity: "0.3", ingredientUnit: "kg" },
-  { ingredientName: "Tomato", ingredientQuantity: "0.5", ingredientUnit: "kg" },
-  { ingredientName: "Pasta", ingredientQuantity: "1", ingredientUnit: "kg" },
-  { ingredientName: "Carrot", ingredientQuantity: "200", ingredientUnit: "g" },
+  { name: "Bread", quantity: "0.3", unit: "kg" },
+  { name: "Tomato", quantity: "0.5", unit: "kg" },
+  { name: "Pasta", quantity: "1", unit: "kg" },
+  { name: "Carrot", quantity: "200", unit: "g" },
   {
-    ingredientName: "Olive Oil",
-    ingredientQuantity: "100",
-    ingredientUnit: "ml",
+    name: "Olive Oil",
+    quantity: "100",
+    unit: "ml",
   },
-  { ingredientName: "Cheese", ingredientQuantity: "200", ingredientUnit: "g" },
-  { ingredientName: "Onion", ingredientQuantity: "300", ingredientUnit: "g" },
+  { name: "Cheese", quantity: "200", unit: "g" },
+  { name: "Onion", quantity: "300", unit: "g" },
   {
-    ingredientName: "Garlic",
-    ingredientQuantity: "50",
-    ingredientUnit: "g",
+    name: "Garlic",
+    quantity: "50",
+    unit: "g",
   },
-  { ingredientName: "Milk", ingredientQuantity: "500", ingredientUnit: "ml" },
-  { ingredientName: "Butter", ingredientQuantity: "100", ingredientUnit: "g" },
+  { name: "Milk", quantity: "500", unit: "ml" },
+  { name: "Butter", quantity: "100", unit: "g" },
 ];
 
 const initialRecipes = [
@@ -33,7 +33,7 @@ const initialRecipes = [
       { name: "Olive Oil", quantity: "2", unit: "tbsp" },
       { name: "Cheese", quantity: "50", unit: "g" },
     ],
-    instructions: [
+    instruction: [
       "Boil the pasta according to package instructions",
       "Sauté onion and garlic in olive oil",
       "Add chopped tomatoes and simmer to make sauce",
@@ -50,7 +50,7 @@ const initialRecipes = [
       { name: "Olive Oil", quantity: "3", unit: "tbsp" },
       { name: "Salt", quantity: "1", unit: "tsp" },
     ],
-    instructions: [
+    instruction: [
       "Peel and thinly slice potatoes and onion",
       "Sauté potatoes and onion in olive oil until soft",
       "Beat eggs and mix with cooked potatoes and onion",
@@ -69,7 +69,7 @@ const initialRecipes = [
       { name: "Spices", quantity: "2", unit: "tsp" },
       { name: "Oil", quantity: "2", unit: "tbsp" },
     ],
-    instructions: [
+    instruction: [
       "Cube the paneer and lightly fry in oil",
       "Sauté onion, garlic, and ginger until golden",
       "Add tomatoes and spices, cook to form sauce",
@@ -85,7 +85,7 @@ const initialRecipes = [
       { name: "Butter", quantity: "50", unit: "g" },
       { name: "Cheese", quantity: "50", unit: "g" },
     ],
-    instructions: [
+    instruction: [
       "Preheat oven to 180°C",
       "Mix softened butter with minced garlic",
       "Spread mixture on bread slices",
@@ -101,7 +101,7 @@ const initialRecipes = [
       { name: "Olive Oil", quantity: "1", unit: "tbsp" },
       { name: "Milk", quantity: "200", unit: "ml" },
     ],
-    instructions: [
+    instruction: [
       "Chop carrots, onion, and garlic",
       "Sauté onion and garlic in olive oil",
       "Add carrots and water, cook until soft",
@@ -118,7 +118,7 @@ const initialRecipes = [
       { name: "Garlic", quantity: "2", unit: "cloves" },
       { name: "Cheese", quantity: "50", unit: "g" },
     ],
-    instructions: [
+    instruction: [
       "Cook pasta according to package instructions",
       "Sauté garlic in olive oil",
       "Add chopped tomatoes and simmer",
