@@ -13,6 +13,7 @@ dist
 dist-ssr
 covereage/
 *.local
+backend/generated
 
 # Editor directories and files
 .vscode/*
