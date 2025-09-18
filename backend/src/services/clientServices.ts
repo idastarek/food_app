@@ -1,20 +1,29 @@
-import { query } from '../db';
+import { query } from "../db";
+// import { PrismaClient } from "@prisma/client";
+// const prisma = new PrismaClient();
+import { PrismaClient } from "../../generated/prisma";
+const prisma = new PrismaClient();
+
+
 interface IngredientType {
-  ingredientName: string;
-  ingredientQuantity: string;
-  ingredientUnit: string;
+  name: string;
+  quantity: string;
+  unit: string;
   imageUrl?: string;
 }
 
 export const getAllIngredients = async () => {
-    const res = await query('SELECT * FROM ingredients', []);
-    return res.rows;
+  const ingredients = await prisma.ingredients.findMany();
+  return ingredients;
 };
 
-export const createIngredient = async (ingredientData: IngredientType) => {
-    const {ingredientName: ingredientName, ingredientQuantity: ingredientQuantity, ingredientUnit: ingredientUnit} = ingredientData;
-    const { rows } = await query(`
-        INSERT INTO ingredients (ingredientName, ingredientQuantity, ingredientUnit) 
-        VALUES ($1, $2, $3) RETURNING *`, [ingredientName, ingredientQuantity, ingredientUnit]);
-    return rows[0];
-}
+export const createIngredient = async (ingredient: IngredientType) => {
+  const newIngredient = await prisma.ingredients.create({
+    data: {
+      name: ingredient.name,
+      quantity: ingredient.quantity,
+      unit: ingredient.unit,
+    },
+  });
+  return newIngredient;
+};
