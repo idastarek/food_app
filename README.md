@@ -10,9 +10,17 @@
 https://github.com/idastarek/food_app.git
 ```
 
-### 2. Install dependencies
+### 2. Install Node JS and dependencies
 
-This project uses pnpm for dependency management.
+Install Node with pnpm for dependency management.
+
+Follow instructions on this page, selecting the appropriate operation system and pnpm.
+
+Node version 22 is recommended.
+
+```
+https://nodejs.org/en/download
+```
 
 ### 2.1 Install root dependencies
 

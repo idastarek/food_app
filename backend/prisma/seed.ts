@@ -24,7 +24,7 @@ const initialIngredients = [
 
 const initialRecipes = [
   {
-    recipeName: "Spaghetti Bolognese",
+    name: "Spaghetti Bolognese",
     ingredients: [
       { name: "Pasta", quantity: "200", unit: "g" },
       { name: "Tomato", quantity: "400", unit: "g" },
@@ -42,7 +42,7 @@ const initialRecipes = [
     ],
   },
   {
-    recipeName: "Tortilla de Papas",
+    name: "Tortilla de Papas",
     ingredients: [
       { name: "Potato", quantity: "500", unit: "g" },
       { name: "Onion", quantity: "1", unit: "pcs" },
@@ -58,7 +58,7 @@ const initialRecipes = [
     ],
   },
   {
-    recipeName: "Matar Paneer",
+    name: "Matar Paneer",
     ingredients: [
       { name: "Paneer", quantity: "200", unit: "g" },
       { name: "Peas", quantity: "150", unit: "g" },
@@ -78,7 +78,7 @@ const initialRecipes = [
     ],
   },
   {
-    recipeName: "Garlic Butter Bread",
+    name: "Garlic Butter Bread",
     ingredients: [
       { name: "Bread", quantity: "4", unit: "slices" },
       { name: "Garlic", quantity: "2", unit: "cloves" },
@@ -93,7 +93,7 @@ const initialRecipes = [
     ],
   },
   {
-    recipeName: "Carrot Soup",
+    name: "Carrot Soup",
     ingredients: [
       { name: "Carrot", quantity: "400", unit: "g" },
       { name: "Onion", quantity: "1", unit: "pcs" },
@@ -110,7 +110,7 @@ const initialRecipes = [
     ],
   },
   {
-    recipeName: "Tomato Pasta",
+    name: "Tomato Pasta",
     ingredients: [
       { name: "Pasta", quantity: "200", unit: "g" },
       { name: "Tomato", quantity: "300", unit: "g" },

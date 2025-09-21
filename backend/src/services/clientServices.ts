@@ -1,6 +1,3 @@
-import { query } from "../db";
-// import { PrismaClient } from "@prisma/client";
-// const prisma = new PrismaClient();
 import { PrismaClient } from "../../generated/prisma";
 const prisma = new PrismaClient();
 
