@@ -49,7 +49,7 @@ pnpm install
 https://www.postgresql.org/download/
 https://www.pgadmin.org/
 
-### 3.2 Create the user and and the database
+### 3.2 Create the user and the database
 
 ```
 -- Connect as the default postgres superuser
