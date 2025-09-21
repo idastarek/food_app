@@ -4,7 +4,7 @@ import Title from '../components/Title.tsx';
 
 
 interface RecipeType {
-    recipeName: string;
+    name: string;
     ingredients: string;
     instruction: string;
 }
@@ -19,7 +19,7 @@ function AddRecipesForm({
 }) {
 
     const [inputData, setInputData] = useState<RecipeType>({
-        recipeName: "",
+        name: "",
         ingredients: "",
         instruction: ""
     })
@@ -37,13 +37,13 @@ function AddRecipesForm({
 
         // reset the input fields after data is submitted
         setInputData({
-            recipeName: "",
+            name: "",
             ingredients: "",
             instruction: ""
         })
 
         const recipe: RecipeType = {
-            recipeName: inputData.recipeName,
+            name: inputData.name,
             ingredients: inputData.ingredients,
             instruction: inputData.instruction
         } 
@@ -69,9 +69,9 @@ function AddRecipesForm({
                         type="text" 
                         id="recipe-name" 
                         className="input-field"
-                        name="recipeName" 
+                        name="name" 
                         placeholder="Recipe name"
-                        value={inputData.recipeName} 
+                        value={inputData.name} 
                         onChange={handleChange} 
                     />
 
