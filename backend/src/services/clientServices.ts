@@ -15,7 +15,6 @@ export const getAllIngredients = async () => {
 };
 
 export const createIngredient = async (ingredient: IngredientType) => {
-  console.log("creating ingredient, clientServices", ingredient)
   const newIngredient = await prisma.ingredients.create({
     data: {
       name: ingredient.name,
