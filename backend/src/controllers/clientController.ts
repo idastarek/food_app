@@ -12,6 +12,7 @@ export const getIngredients = async (req: Request, res: Response) => {
 }
 
 export const createIngredient = async (req: Request, res: Response) => {
+    console.log("req.body clientControllers", req.body);
     try {
         const ingredient = await clientServices.createIngredient(req.body);
         res.status(201).json(ingredient);

@@ -27,14 +27,10 @@ function GetRecipesButton() {
 
 export default function AddIngredients() {
 
-  //TODO: delete this 
-
-  // set the default ingredients values to the ingredients from the json file
-  // const defaultIngredientsValues: IngredientType[] = ingredients;
-  // console.log("default ingredients values", defaultIngredientsValues);
-
   // initialise an array to store ingredient objects
-  const [ingredientsArray, setIngredientsArray] = useState<IngredientType[]>([]);
+  const [ingredientsArray, setIngredientsArray] = useState<IngredientType[]>(
+    []
+  );
 
   // empty input fields - resetting
   const resetInputData: IngredientType = {
@@ -46,15 +42,17 @@ export default function AddIngredients() {
 
   // displaying ingredients user currently has from the database
   useEffect(() => {
-      const fetchData = async () => {
-        try {
-          const response = await axios.get('http://localhost:3000/api/ingredients');
-          setIngredientsArray(response.data);
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          "http://localhost:3000/api/ingredients"
+        );
+        setIngredientsArray(response.data);
       } catch (error) {
-        console.error('Error fetching ingredients', error);
+        console.error("Error fetching ingredients", error);
       }
-      };
-      fetchData();
+    };
+    fetchData();
   }, []);
 
   const handleChange = (
@@ -68,6 +66,26 @@ export default function AddIngredients() {
   };
 
   const [inputData, setInputData] = useState<IngredientType>(resetInputData);
+
+  // add new ingredient to the database
+  const sendData = async (ingredient: IngredientType) => {
+    try {
+      const response = await axios.post(
+        "http://localhost:3000/api/ingredients",
+        {
+          name: ingredient.name,
+          quantity: ingredient.quantity,
+          unit: ingredient.unit,
+        }
+      );
+      console.log("Ingredient saved:", response.data);
+
+      // update state with returned ingredient from backend
+      setIngredientsArray((prev) => [...prev, response.data]);
+    } catch (error) {
+      console.error("Error adding ingredient: ", error);
+    }
+  };
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -89,13 +107,7 @@ export default function AddIngredients() {
       return;
     }
 
-    // update state by creating a new ingredients array including the new ingredient
-    const updatedArray = [...ingredientsArray, ingredient];
-    setIngredientsArray(updatedArray);
-
-    console.log("updated ingredients array", updatedArray);
-
-    localStorage.setItem("ingredients", JSON.stringify(updatedArray));
+    sendData(ingredient);
 
     // reset the input fields after data is submitted
     setInputData(resetInputData);
@@ -111,6 +123,8 @@ export default function AddIngredients() {
     const updatedArray = ingredientsArray.filter(
       (ingredient) => ingredient.name !== ingToDelete
     );
+
+    // TODO: remove localStorage, update the db
     setIngredientsArray(updatedArray);
     localStorage.setItem("ingredients", JSON.stringify(updatedArray));
   };
