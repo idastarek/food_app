@@ -26,7 +26,6 @@ function GetRecipesButton() {
 }
 
 export default function AddIngredients() {
-
   // initialise an array to store ingredient objects
   const [ingredientsArray, setIngredientsArray] = useState<IngredientType[]>(
     []
