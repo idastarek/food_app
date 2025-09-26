@@ -1,7 +1,6 @@
 import { PrismaClient } from "../../generated/prisma";
 const prisma = new PrismaClient();
 
-
 interface IngredientType {
   name: string;
   quantity: string;
