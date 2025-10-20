@@ -1,11 +1,4 @@
-// ingredient interface
-export interface IngredientType  {
-  name: string;
-  quantity: string;
-  unit: string;
-  imageUrl?: string;
-  onDelete?: () => void;
-}
+import type IngredientType from "../../../types.ts";
 
 // ingredient component
 export default function Ingredient({ name, quantity, unit, imageUrl, onDelete }: IngredientType) {
