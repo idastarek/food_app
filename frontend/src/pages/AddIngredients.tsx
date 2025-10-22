@@ -8,7 +8,7 @@ import SelectDropdown from "../components/SelectDropdown.tsx";
 import Button from "../components/Button.tsx";
 import ItemsGrid from "../components/ItemsGrid.tsx";
 import Ingredient from "../components/Ingredient.tsx";
-import type { IngredientType } from "../components/Ingredient.tsx";
+import type IngredientType from "../../../types.ts";
 import { hasEmptyFields } from "../utils/formValidation.ts";
 import { ingredientIcons } from "../ingredientIcons.ts";
 
