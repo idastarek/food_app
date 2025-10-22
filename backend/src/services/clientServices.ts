@@ -1,12 +1,6 @@
 import { PrismaClient } from "../../generated/prisma";
+import type IngredientType from "../../../types.ts";
 const prisma = new PrismaClient();
-
-interface IngredientType {
-  name: string;
-  quantity: string;
-  unit: string;
-  imageUrl?: string;
-}
 
 export const getAllIngredients = async () => {
   const ingredients = await prisma.ingredients.findMany();
