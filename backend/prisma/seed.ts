@@ -130,9 +130,11 @@ const initialRecipes = [
 const seed = async () => {
   await prisma.ingredients.createMany({
     data: initialIngredients,
+    skipDuplicates: true,
   });
   await prisma.recipes.createMany({
     data: initialRecipes,
+    skipDuplicates: true,
   });
 };
 
