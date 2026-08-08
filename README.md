@@ -1,89 +1,176 @@
 # Food App
 
-## A full-stack application which takes ingredients as input and outputs suggested recipes. Built with React, Vite, TypeScript, ExpressJS and PostgreSQL.
+A full-stack pantry app that takes ingredients as input and suggests recipes. Built with React, Vite, TypeScript, Express, Prisma, and PostgreSQL.
 
-## How to install and run the project
+## Project Status
+
+This is an in-progress learning project. The current focus is moving the app from a frontend/localStorage prototype toward a backend and database-backed flow.
+
+## Tech Stack
+
+- Frontend: React, Vite, TypeScript
+- Backend: Express, TypeScript
+- Database: PostgreSQL
+- Database toolkit: Prisma
+- Package manager: pnpm workspaces
+
+## Prerequisites
+
+Before running the project, install:
+
+- Node.js 22: https://nodejs.org/en/download
+- pnpm: https://pnpm.io/installation
+- PostgreSQL: https://www.postgresql.org/download/
+- pgAdmin, optional but useful: https://www.pgadmin.org/
+
+## How To Run The Project
 
 ### 1. Clone the repository
 
-```
-https://github.com/idastarek/food_app.git
-```
-
-### 2. Install Node JS and pnpm
-
-Install Node with pnpm for dependency management.
-
-Follow instructions on this page, selecting the appropriate operation system and pnpm.
-
-Node version 22 is recommended.
-
-```
-https://nodejs.org/en/download
+```powershell
+git clone https://github.com/idastarek/food_app.git
+cd food_app
 ```
 
-### 3. Install dependencies
+### 2. Install dependencies
 
-Since this project uses a pnpm workspace, you only need to run one command at the root:
+Run this from the project root:
 
-```
+```powershell
 pnpm install
 ```
 
-This will install dependencies for all packages (frontend, backend, and root) and link them automatically.
+This installs dependencies for the root, frontend, and backend packages.
 
-### 4. Set up Postgre SQL
+### 3. Create the PostgreSQL user and database
 
-### 4.1 Download PostgreSQL and pgAdmin -
+Create a local PostgreSQL database named `food_app_db` and a user named `food_app_user`.
 
-https://www.postgresql.org/download/
-https://www.pgadmin.org/
+You can run this SQL in pgAdmin's Query Tool while connected as the default `postgres` user:
 
-### 4.2 Create the user and the database
-
-```
--- Connect as the default postgres superuser
+```sql
 CREATE USER food_app_user WITH PASSWORD 'your_password';
 CREATE DATABASE food_app_db OWNER food_app_user;
 ```
 
-### 5. Update .env file
+Replace `your_password` with your own local database password.
 
-In backend/.env, add your database credentials:
+### 4. Create the backend environment file
 
+Create a file called `backend/.env`.
+
+You can copy the example file:
+
+```powershell
+cd backend
+copy .env.example .env
 ```
+
+Then update `backend/.env` with your local database details:
+
+```env
 DB_USER=food_app_user
-DB_PASSWORD=your_password
-DB_NAME=food_app
 DB_HOST=localhost
+DB_NAME=food_app_db
 DB_PORT=5432
+DB_PASSWORD=your_password
+NODE_ENV=development
+PORT=3000
+DATABASE_URL="postgresql://food_app_user:your_password@localhost:5432/food_app_db?schema=public"
 ```
 
-### 6. Run the backend server
+The `DB_PASSWORD` and `DATABASE_URL` values should use the same password you set when creating the PostgreSQL user.
 
+Steps 5 and 6 are mainly needed when setting up the project for the first time, using a new device, or working with a fresh local database.
+If your local database already has the required tables and sample data, skip the migration and seed steps.
+
+### 5. Create the database tables
+
+From the `backend` folder, run:
+
+```powershell
+pnpm prisma migrate dev
 ```
+
+This creates or updates the local PostgreSQL tables using the saved Prisma migrations.
+
+### 6. Seed the database
+
+If this is your first time setting up the local database, seed it with sample data.
+
+From the `backend` folder, run:
+
+```powershell
+pnpm prisma db seed
+```
+
+This inserts sample ingredients and recipes into the database.
+
+The seed script skips duplicates, so it can be rerun safely against a local database.
+
+### 7. Generate the Prisma Client
+
+From the `backend` folder, run:
+
+```powershell
+pnpm prisma generate
+```
+
+This generates the local Prisma Client used by the backend to query PostgreSQL. The generated files are not committed to the repository, so this step is needed after cloning the project.
+
+### 8. Start the backend
+
+From the `backend` folder, run:
+
+```powershell
 pnpm dev
 ```
 
-The server runs on http://localhost:3000
-Note: seeing CANNOT GET / is normal if no root route is defined.
+The backend runs on http://localhost:3000.
 
-### 7. Create the .env file
+You can test it by calling the ingredients API:
 
-Follow the instructions in the .env.example.
-
-### 8. Create tables in the database
-
-Run the following command to create tables in the database with prisma.
-
-```
-npx prisma migrate dev --name init
+```bash
+curl http://localhost:3000/api/ingredients
 ```
 
-### 9. Seed the database
+### 9. Start the frontend
 
-Run the following command to seed the database with sample data.
+Open a second terminal. From the project root, run:
 
+```powershell
+cd frontend
+pnpm dev
 ```
-npx prisma db seed
+
+Vite will print the local frontend URL in the terminal, usually http://localhost:5173.
+
+## Useful Commands
+
+Run backend development server:
+
+```powershell
+cd backend
+pnpm dev
+```
+
+Run frontend development server:
+
+```powershell
+cd frontend
+pnpm dev
+```
+
+Run frontend tests:
+
+```powershell
+cd frontend
+pnpm test
+```
+
+Check backend TypeScript build:
+
+```powershell
+cd backend
+pnpm build
 ```

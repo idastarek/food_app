@@ -15,6 +15,10 @@ covereage/
 *.local
 backend/generated
 
+# Local Cursor context
+.cursor/rules/personal-working-context.mdc
+skills-lock.json
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
