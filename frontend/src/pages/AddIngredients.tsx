@@ -1,116 +1,114 @@
-import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import axios from "axios";
-import "../styles/AddIngredients.scss";
-import Title from "../components/Title.tsx";
-import InputField from "../components/InputField.tsx";
-import SelectDropdown from "../components/SelectDropdown.tsx";
-import Button from "../components/Button.tsx";
-import ItemsGrid from "../components/ItemsGrid.tsx";
-import Ingredient from "../components/Ingredient.tsx";
-import type IngredientType from "../../../types.ts";
-import { hasEmptyFields } from "../utils/formValidation.ts";
-import { ingredientIcons } from "../ingredientIcons.ts";
+import { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
+import axios from 'axios'
+import '../styles/AddIngredients.scss'
+import Title from '../components/Title.tsx'
+import InputField from '../components/InputField.tsx'
+import SelectDropdown from '../components/SelectDropdown.tsx'
+import Button from '../components/Button.tsx'
+import ItemsGrid from '../components/ItemsGrid.tsx'
+import Ingredient from '../components/Ingredient.tsx'
+import type IngredientType from '../../../types.ts'
+import { hasEmptyFields } from '../utils/formValidation.ts'
+import { ingredientIcons } from '../ingredientIcons.ts'
 
 function GetRecipesButton() {
-  const navigate = useNavigate();
+  const navigate = useNavigate()
   function handleRedirect() {
-    navigate("/recipe-suggestions");
+    navigate('/recipe-suggestions')
   }
 
   return (
     <div id="get-recipes-btn">
       <Button type="button" text="Get recipes!" onClick={handleRedirect} />
     </div>
-  );
+  )
 }
 
 export default function AddIngredients() {
   // initialise an array to store ingredient objects
-  const [ingredientsArray, setIngredientsArray] = useState<IngredientType[]>(
-    []
-  );
+  const [ingredientsArray, setIngredientsArray] = useState<IngredientType[]>([])
 
   // empty input fields - resetting
   const resetInputData: IngredientType = {
-    name: "",
-    quantity: "",
-    unit: "",
-    imageUrl: "",
-  };
+    name: '',
+    quantity: '',
+    unit: '',
+    imageUrl: '',
+  }
 
   // displaying ingredients user currently has from the database
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:3000/api/ingredients"
-        );
-        setIngredientsArray(response.data);
+          'http://localhost:3000/api/ingredients'
+        )
+        setIngredientsArray(response.data)
       } catch (error) {
-        console.error("Error fetching ingredients", error);
+        console.error('Error fetching ingredients', error)
       }
-    };
-    fetchData();
-  }, []);
+    }
+    fetchData()
+  }, [])
 
   const handleChange = (
     event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {
-    const { name, value } = event.target;
+    const { name, value } = event.target
     setInputData((prev) => ({
       ...prev,
       [name]: value,
-    }));
-  };
+    }))
+  }
 
-  const [inputData, setInputData] = useState<IngredientType>(resetInputData);
+  const [inputData, setInputData] = useState<IngredientType>(resetInputData)
 
   // add new ingredient to the database
   const sendData = async (ingredient: IngredientType) => {
     try {
       const response = await axios.post(
-        "http://localhost:3000/api/ingredients",
+        'http://localhost:3000/api/ingredients',
         {
           name: ingredient.name,
           quantity: ingredient.quantity,
           unit: ingredient.unit,
         }
-      );
-      console.log("Ingredient saved:", response.data);
+      )
+      console.log('Ingredient saved:', response.data)
 
       // update state with returned ingredient from backend
-      setIngredientsArray((prev) => [...prev, response.data]);
+      setIngredientsArray((prev) => [...prev, response.data])
     } catch (error) {
-      console.error("Error adding ingredient: ", error);
+      console.error('Error adding ingredient: ', error)
     }
-  };
+  }
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
+    event.preventDefault()
 
     const ingredient: IngredientType = {
       name: inputData.name,
       quantity: inputData.quantity,
       unit: inputData.unit,
       imageUrl: inputData.imageUrl,
-    };
+    }
 
-    console.log("ingredient", ingredient);
+    console.log('ingredient', ingredient)
 
     // TODO add an error state and message for each input
 
     // validate if none of the fields was left empty
-    if (hasEmptyFields(ingredient, ["name", "quantity", "unit"])) {
-      alert("At least one of the fields is empty!");
-      return;
+    if (hasEmptyFields(ingredient, ['name', 'quantity', 'unit'])) {
+      alert('At least one of the fields is empty!')
+      return
     }
 
-    sendData(ingredient);
+    sendData(ingredient)
 
     // reset the input fields after data is submitted
-    setInputData(resetInputData);
-  };
+    setInputData(resetInputData)
+  }
 
   // TODO:
   // (1) if user adds ingredient already present, combine the amounts rather than having
@@ -121,12 +119,11 @@ export default function AddIngredients() {
   const handleDeleteIngredient = (ingToDelete: string) => {
     const updatedArray = ingredientsArray.filter(
       (ingredient) => ingredient.name !== ingToDelete
-    );
+    )
 
-    // TODO: remove localStorage, update the db
-    setIngredientsArray(updatedArray);
-    localStorage.setItem("ingredients", JSON.stringify(updatedArray));
-  };
+    // TODO: update the db
+    setIngredientsArray(updatedArray)
+  }
 
   return (
     <>
@@ -158,12 +155,12 @@ export default function AddIngredients() {
 
                 <SelectDropdown
                   options={[
-                    { value: "", label: "Select unit" },
-                    { value: "g", label: "grams" },
-                    { value: "kg", label: "kilograms" },
-                    { value: "ml", label: "milliliters" },
-                    { value: "l", label: "liters" },
-                    { value: "pcs", label: "pieces" },
+                    { value: '', label: 'Select unit' },
+                    { value: 'g', label: 'grams' },
+                    { value: 'kg', label: 'kilograms' },
+                    { value: 'ml', label: 'milliliters' },
+                    { value: 'l', label: 'liters' },
+                    { value: 'pcs', label: 'pieces' },
                   ]}
                   inputItem="unit"
                   name="unit"
@@ -187,7 +184,7 @@ export default function AddIngredients() {
               renderItem={(item, index) => {
                 const imageUrl =
                   ingredientIcons[item.name.toLowerCase()] ||
-                  ingredientIcons.default;
+                  ingredientIcons.default
                 return (
                   <Ingredient
                     key={item.name + index}
@@ -197,7 +194,7 @@ export default function AddIngredients() {
                     imageUrl={imageUrl}
                     onDelete={() => handleDeleteIngredient(item.name)}
                   />
-                );
+                )
               }}
             />
           </div>
@@ -205,5 +202,5 @@ export default function AddIngredients() {
         {ingredientsArray.length > 0 && <GetRecipesButton />}
       </div>
     </>
-  );
+  )
 }
