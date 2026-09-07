@@ -116,13 +116,17 @@ export default function AddIngredients() {
   // (2) "are you sure you want to delete?" notification
   // (3) long pressing / double clicking ingredient allows the user to readjust the quantity / delete
 
-  const handleDeleteIngredient = (ingToDelete: string) => {
-    const updatedArray = ingredientsArray.filter(
-      (ingredient) => ingredient.name !== ingToDelete
-    )
-
-    // TODO: update the db
-    setIngredientsArray(updatedArray)
+  const handleDeleteIngredient = async (ingredientId: number) => {
+    try {
+      await axios.delete(
+        `http://localhost:3000/api/ingredients/${ingredientId}`
+      )
+      setIngredientsArray((prev) =>
+        prev.filter((ingredient) => ingredient.id !== ingredientId)
+      )
+    } catch (error) {
+      console.error('Error deleting ingredient:', error)
+    }
   }
 
   return (
@@ -192,7 +196,11 @@ export default function AddIngredients() {
                     quantity={item.quantity}
                     unit={item.unit}
                     imageUrl={imageUrl}
-                    onDelete={() => handleDeleteIngredient(item.name)}
+                    onDelete={() => {
+                      if (item.id != null) {
+                        handleDeleteIngredient(item.id)
+                      }
+                    }}
                   />
                 )
               }}

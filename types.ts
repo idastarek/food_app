@@ -1,7 +1,8 @@
 export default interface IngredientType {
-  name: string;
-  quantity: string;
-  unit: string;
-  imageUrl?: string;
-  onDelete?: () => void;
+  id?: number
+  name: string
+  quantity: string
+  unit: string
+  imageUrl?: string
+  onDelete?: () => void
 }
