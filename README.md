@@ -4,7 +4,14 @@ A full-stack pantry app that takes ingredients as input and suggests recipes. Bu
 
 ## Project Status
 
-This is an in-progress learning project. The current focus is moving the app from a frontend/localStorage prototype toward a backend and database-backed flow.
+This is an in-progress learning project. Pantry ingredients are backed by the Express API and PostgreSQL. Recipe suggestions still use a static recipe list; wiring that list to the database is planned next.
+
+## Data sources (current)
+
+- **Ingredients (pantry):** loaded, created, and deleted via the backend API (`/api/ingredients`) and stored in PostgreSQL.
+- **Recipe suggestions matching:** scores recipes using pantry ingredients from `GET /api/ingredients`.
+- **Recipe list on the suggestions page:** still comes from static `frontend/src/data/recipes.json` (not from the database yet), even though seeded recipes exist in Postgres.
+- **Next step (planned):** read-only `GET /api/recipes` and wire suggestions to that response.
 
 ## Tech Stack
 
